@@ -1,4 +1,5 @@
 ﻿using e_commerse.Domain.Exceptions.Product;
+using e_commerse.Domain.ValueObjects.Category;
 using e_commerse.Domain.ValueObjects.Product;
 using e_commerse.Domain.ValueObjects.ProductImage;
 
@@ -12,6 +13,7 @@ namespace e_commerse.Domain.Entities
         public ProductPrice Price { get; private set; }
         public StockQuantity StockQuantity { get; private set; }
         public DateTime CreatedAt { get; private set; }
+        public CategoryId CategoryId { get; private set; }
         public IReadOnlyCollection<ProductImage> ProductImages => _images;
 
         private List<ProductImage> _images = new();
@@ -26,6 +28,28 @@ namespace e_commerse.Domain.Entities
             this.Price = price;
             this.StockQuantity = stockQuantity;
             this.CreatedAt = DateTime.UtcNow;
+        }
+
+        internal Product(ProductId id, ProductName name, ProductDescription description,
+               StockQuantity stockQuantity, ProductPrice price, CategoryId categoryId)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Description = description;
+            this.Price = price;
+            this.CategoryId = categoryId;
+            this.StockQuantity = stockQuantity;
+            this.CreatedAt = DateTime.UtcNow;
+        }
+
+        public void ChangeCategory(CategoryId newCategoryId)
+        {
+            if(CategoryId == newCategoryId)
+            {
+                throw new SameCategoryException();
+            }
+
+            this.CategoryId = newCategoryId;
         }
 
         public void AddImage(ProductImage productImage)

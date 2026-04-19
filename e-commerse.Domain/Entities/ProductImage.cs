@@ -1,4 +1,5 @@
-﻿using e_commerse.Domain.ValueObjects.Product;
+﻿using e_commerse.Domain.Exceptions.ProductImage;
+using e_commerse.Domain.ValueObjects.Product;
 using e_commerse.Domain.ValueObjects.ProductImage;
 
 namespace e_commerse.Domain.Entities
@@ -24,11 +25,17 @@ namespace e_commerse.Domain.Entities
 
         public void SetMain()
         {
+            if(IsMain)
+                throw new AlreadyImageMainException();
+
             IsMain = true;
         }
 
         public void UnsetMain() 
         {
+            if(!IsMain)
+                throw new AlreadyImageUnMainException();
+
             IsMain = false;
         }
     }
