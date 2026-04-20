@@ -29,7 +29,8 @@ namespace e_commerse.Domain.Entities
 
             if(item is not null)
             {
-                item.Quantity += cartItem.Quantity;
+                item.IncreaseQuantity(cartItem.Quantity);
+                return;
             }
 
             _items.Add(cartItem);

@@ -5,14 +5,17 @@ namespace e_commerse.Domain.Entities
 {
     public class CartItem
     {
-        public ProductId ProductId { get; set; }
-        public CartId CartId { get; set; }
-        public int Quantity { get; set; }
+        public ProductId ProductId { get; private set; }
+        public CartId CartId { get; private set; }
+        public int Quantity { get; private set; } = 0;
+        public Money Price { get; private set; }
+        public decimal Total => Price.Amount * Quantity;
 
-        public CartItem(ProductId productId, CartId cartId, int quantity)
+        public CartItem(ProductId productId, CartId cartId, int quantity, Money price)
         {
             ProductId = productId;
             CartId = cartId;
+            Price = price;
             Quantity = quantity;
         }
 

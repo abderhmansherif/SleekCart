@@ -10,7 +10,7 @@ namespace e_commerse.Domain.Entities
         public ProductId Id { get; private set; }
         public ProductName Name { get; private set; }
         public ProductDescription Description { get; private set; }
-        public ProductPrice Price { get; private set; }
+        public Money Price { get; private set; }
         public StockQuantity StockQuantity { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public CategoryId CategoryId { get; private set; }
@@ -20,23 +20,23 @@ namespace e_commerse.Domain.Entities
         private Product() { }
 
         internal Product(ProductId id, ProductName name, ProductDescription description, 
-                StockQuantity stockQuantity, ProductPrice price)
+                StockQuantity stockQuantity, Money money)
         {
             this.Id = id;
             this.Name = name;
             this.Description = description;
-            this.Price = price;
+            this.Price = money;
             this.StockQuantity = stockQuantity;
             this.CreatedAt = DateTime.UtcNow;
         }
 
         internal Product(ProductId id, ProductName name, ProductDescription description,
-               StockQuantity stockQuantity, ProductPrice price, CategoryId categoryId)
+               StockQuantity stockQuantity, Money money, CategoryId categoryId)
         {
             this.Id = id;
             this.Name = name;
             this.Description = description;
-            this.Price = price;
+            this.Price = money;
             this.CategoryId = categoryId;
             this.StockQuantity = stockQuantity;
             this.CreatedAt = DateTime.UtcNow;
