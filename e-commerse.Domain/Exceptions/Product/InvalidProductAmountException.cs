@@ -4,7 +4,7 @@ namespace e_commerse.Domain.Exceptions.Product
 {
     public class InvalidProductAmountException: ProductException
     {
-        public InvalidProductAmountException(): base("the amount can not be less than one currency.")
+        public InvalidProductAmountException(): base("The amount cannot be negative.")
         {
             
         }

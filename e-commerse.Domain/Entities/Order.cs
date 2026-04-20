@@ -1,8 +1,11 @@
-﻿using e_commerse.Domain.Enum.Order;
+﻿using e_commerse.Domain.Exceptions.Coupon;
+using e_commerse.Domain.Enums.Order;
 using e_commerse.Domain.Exceptions.Order;
+using e_commerse.Domain.ValueObjects.Coupon;
 using e_commerse.Domain.ValueObjects.Order;
 using e_commerse.Domain.ValueObjects.Product;
 using e_commerse.Domain.ValueObjects.User;
+using System.ComponentModel;
 
 namespace e_commerse.Domain.Entities
 {
@@ -13,10 +16,10 @@ namespace e_commerse.Domain.Entities
         public IReadOnlyCollection<OrderItem> Items => _items;
         public Money SubTotal { get; private set; }
         public Money Total { get; private set; }
-        public Guid CouponId { get; private set; }
+        public CouponId CouponId { get; private set; }
         public ShippingAddress ShippingAddress { get; private set; }
         public OrderStatus Status { get; private set; }
-        public Discount Discount { get; private set; }
+        public Money Discount { get; private set; }
         public DateTime CreatedAt { get; private set; }
 
         private List<OrderItem> _items = new();
@@ -49,9 +52,14 @@ namespace e_commerse.Domain.Entities
 
             var item = _items.FirstOrDefault(i => i.ProductId == newItem.ProductId);
 
-            if(item is null)
+            if (item is not null)
             {
-                throw new EmptyOrderItemException();
+                throw new DuplicateOrderItemException();
+            }
+
+            if(_items.Any(i => i.Price.Currency != newItem.Price.Currency))
+            {
+                throw new InvalidOperationException("All items in an order must have the same currency.");
             }
 
             _items.Add(newItem);
@@ -63,7 +71,19 @@ namespace e_commerse.Domain.Entities
                 AddItem(item);
         }
 
+        public void ApplyCoupon(Coupon coupon)
+        {
+           
+        }
 
+        public void CalculateTotal()
+        {
+            
+        }
 
+        public void UpdateStatus(OrderStatus newStatus)
+        {
+           
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace e_commerse.Domain.Enum.User
+﻿namespace e_commerse.Domain.Enums.User
 {
     public enum UserRole
     {

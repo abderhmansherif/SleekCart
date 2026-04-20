@@ -1,4 +1,5 @@
 ﻿using e_commerse.Domain.Exceptions.Cart;
+using e_commerse.Domain.ValueObjects;
 using e_commerse.Domain.ValueObjects.Cart;
 using e_commerse.Domain.ValueObjects.User;
 
@@ -8,6 +9,7 @@ namespace e_commerse.Domain.Entities
     {
         public CartId Id { get; private set; }
         public UserId UserId { get; private set; }
+        public Currency Currency { get; private set; }
         public IReadOnlyCollection<CartItem> Items => _items;
 
         private List<CartItem> _items = new();
@@ -27,10 +29,19 @@ namespace e_commerse.Domain.Entities
 
             var item = _items.FirstOrDefault(i => i.ProductId == cartItem.ProductId);
 
-            if(item is not null)
+            if (item is not null)
             {
                 item.IncreaseQuantity(cartItem.Quantity);
                 return;
+            }
+
+            if (!_items.Any()) 
+            {
+                Currency = cartItem.Price.Currency;
+            }
+            else if(Currency != cartItem.Price.Currency)
+            {
+                throw new CurrencyMismatchException();
             }
 
             _items.Add(cartItem);

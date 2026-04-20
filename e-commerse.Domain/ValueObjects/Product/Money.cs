@@ -1,4 +1,5 @@
-﻿using e_commerse.Domain.Exceptions.Product;
+﻿using e_commerse.Domain.Exceptions.Cart;
+using e_commerse.Domain.Exceptions.Product;
 
 namespace e_commerse.Domain.ValueObjects.Product
 {
@@ -9,7 +10,7 @@ namespace e_commerse.Domain.ValueObjects.Product
 
         public Money(decimal ammount, string currency)
         {
-            if(ammount < 1)
+            if(ammount < 0)
             {
                 throw new InvalidProductAmountException();
             }
@@ -21,6 +22,16 @@ namespace e_commerse.Domain.ValueObjects.Product
 
             this.Amount = ammount;
             this.Currency = currency;
+        }
+
+        public Money Subtract(Money other)
+        {
+            if(this.Currency != other.Currency)
+            {
+                throw new CurrencyMismatchException();
+            }
+
+            return new Money(Amount - other.Amount, Currency);
         }
     }
 }
