@@ -5,7 +5,8 @@ using e_commerse.Domain.ValueObjects.Coupon;
 using e_commerse.Domain.ValueObjects.Order;
 using e_commerse.Domain.ValueObjects.Product;
 using e_commerse.Domain.ValueObjects.User;
-using System.ComponentModel;
+using e_commerse.Domain.ValueObjects;
+using e_commerse.Domain.Exceptions.Cart;
 
 namespace e_commerse.Domain.Entities
 {
@@ -17,6 +18,7 @@ namespace e_commerse.Domain.Entities
         public Money SubTotal { get; private set; }
         public Money Total { get; private set; }
         public CouponId CouponId { get; private set; }
+        public Currency Currency { get; private set; }
         public ShippingAddress ShippingAddress { get; private set; }
         public OrderStatus Status { get; private set; }
         public Money Discount { get; private set; }
@@ -45,7 +47,8 @@ namespace e_commerse.Domain.Entities
 
         public void AddItem(OrderItem newItem)
         {
-            if(newItem is null)
+            //Validate the newItem
+            if (newItem is null)
             {
                 throw new EmptyOrderItemException();
             }
@@ -57,12 +60,21 @@ namespace e_commerse.Domain.Entities
                 throw new DuplicateOrderItemException();
             }
 
-            if(_items.Any(i => i.Price.Currency != newItem.Price.Currency))
+            // If the cart is empty, set the currency based on the first item added 
+            if (!_items.Any())
             {
-                throw new InvalidOperationException("All items in an order must have the same currency.");
+                Currency = newItem.Price.Currency;
+            }// If the cart already has items, ensure the currency matches
+            else if(Currency != newItem.Price.Currency)
+            {
+                throw new CurrencyMismatchException();
             }
 
+            // Add the new item to the cart
             _items.Add(newItem);
+
+            // Recalculate the order totals
+            Recalculate();
         }
 
         public void AddItems(List<OrderItem> items)
@@ -73,17 +85,47 @@ namespace e_commerse.Domain.Entities
 
         public void ApplyCoupon(Coupon coupon)
         {
-           
+           if(coupon is null)
+                throw new EmptyCouponException();
+
+           if(!_items.Any())
+                throw new EmptyOrderException();
+
+           // Calculate the discount amount
+           var discount = coupon.CalculateDiscount(SubTotal);
+
+           // Set the Discount Property with the Calculated discount
+           Discount = new Money(discount, Currency.Value);
+
+           Recalculate();
         }
 
-        public void CalculateTotal()
+        private void Recalculate()
         {
-            
+            // Gets the all Totol Prices
+            var sum = _items.Sum(i => i.Total);
+
+            // Sets the prices and the currency based on Order Currency to SubTotal
+            SubTotal = new Money(sum, Currency.Value);
+
+            // Sets the Total to SubTotal before applying any discount
+            Total = SubTotal;
+
+            // If there is a discount, subtract it from the SubTotal to get the final Total
+            if (Discount is not null)
+            {
+                Total = SubTotal.Subtract(Discount);
+            }
         }
 
         public void UpdateStatus(OrderStatus newStatus)
         {
-           
+            // Validate the new status transition
+            if (newStatus == OrderStatus.Completed)
+                throw new InvalidOperationException();
+
+            // Update the order status
+            Status = newStatus;
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using e_commerse.Domain.Enum.Coupon;
+﻿using e_commerse.Domain.Enums.Coupon;
+using e_commerse.Domain.Exceptions.Cart;
 using e_commerse.Domain.Exceptions.Coupon;
 using e_commerse.Domain.ValueObjects.Coupon;
+using e_commerse.Domain.ValueObjects.Product;
 
 namespace e_commerse.Domain.Entities
 {
@@ -9,7 +11,7 @@ namespace e_commerse.Domain.Entities
         public CouponId Id { get; private set; }
         public CouponCode Code { get; private set; }
         public CouponType Type { get; private set; }
-        public CouponDiscount DiscountValue { get; private set; }
+        public Money DiscountValue { get; private set; }
         public bool IsUsed { get; private set; } = false;
         public bool IsPercentage { get; private set; } 
         public UsageLimit UsageLimit { get; private set; }
@@ -43,15 +45,18 @@ namespace e_commerse.Domain.Entities
 
         public bool IsValid()
         {
+            // Check if the coupon has expired
             if (DateTime.UtcNow > ExpiryDate)
                 return false;
 
+            // Check usage based on coupon type
             if (Type == CouponType.SingleUse)
             {
                 return !IsUsed;
             }
-            
-            if(Type == CouponType.MultiUse)
+
+            // For multi-use coupons, check if the usage limit has not been exceeded
+            if (Type == CouponType.MultiUse)
             {
                 return UsedCount < UsageLimit;
             }
@@ -59,34 +64,44 @@ namespace e_commerse.Domain.Entities
             return false;
         }
 
-        public decimal CalculateDiscount(decimal amount)
+        public decimal CalculateDiscount(Money amount)
         {
-            if(amount < 0)
+            // Validate the input amount
+            if (amount is null)
             {
                 return 0;
             }
 
-            if(IsPercentage)
+            // Ensure the discount value and the amount are in the same currency
+            if (DiscountValue.Currency != amount.Currency)
             {
-                return (amount * DiscountValue) / 100;
+                throw new CurrencyMismatchException();
             }
 
-            return DiscountValue;
+            // Calculate the discount based on whether it's a percentage or a fixed amount
+            if (IsPercentage)
+            {
+                return (amount.Amount * DiscountValue.Amount) / 100;
+            }
+
+            return DiscountValue.Amount;
         }
 
         public void Use()
         {
-           if(!IsValid())
+            // Validate the coupon before using it
+           if (!IsValid())
            {
                 throw new CouponNotValidException();
            }
 
-           if(Type == CouponType.SingleUse)
+            // Mark the coupon as used based on its type
+            if (Type == CouponType.SingleUse)
                IsUsed = true;
-           
-           else if(Type == CouponType.MultiUse)
+
+            // For multi-use coupons, increment the used count
+            else if (Type == CouponType.MultiUse)
                UsedCount++;
-           
         }
 
     }

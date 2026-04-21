@@ -20,6 +20,13 @@ namespace e_commerse.Domain.Entities
         }
 
         public void IncreaseQuantity(int amount)
-            => Quantity += amount;
+        {
+            if(amount <= 0)
+            {
+                throw new InvalidQuantityException();
+            }
+
+            Quantity += amount;
+        }
     }
 }
