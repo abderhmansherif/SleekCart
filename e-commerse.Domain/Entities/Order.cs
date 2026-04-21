@@ -97,6 +97,7 @@ namespace e_commerse.Domain.Entities
            // Set the Discount Property with the Calculated discount
            Discount = new Money(discount, Currency.Value);
 
+           //Once the coupon is applied, mark it as used
            Recalculate();
         }
 
