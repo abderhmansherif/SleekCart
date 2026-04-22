@@ -5,7 +5,7 @@
         Pending,
         Paid,
         Shipped,
-        Completed,
+        Delivered,
         Failed,
         Cancelled,
     }

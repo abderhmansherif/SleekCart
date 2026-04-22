@@ -30,7 +30,7 @@ namespace e_commerse.Domain.Entities
         {
             this.Id = id;
             this.UserId = userId;
-            this.Status = OrderStatus.Pending;
+            Status = OrderStatus.Pending;
             this.ShippingAddress = shippingAddress;
             this.CreatedAt = DateTime.UtcNow;
         }
@@ -39,8 +39,8 @@ namespace e_commerse.Domain.Entities
         {
             this.Id = id;
             this.UserId = userId;
-            this.Status = OrderStatus.Pending;
             this.ShippingAddress = shippingAddress;
+            Status = OrderStatus.Pending;
             this.CreatedAt = DateTime.UtcNow;
             AddItems(items);
         }
@@ -88,8 +88,11 @@ namespace e_commerse.Domain.Entities
            if(coupon is null)
                 throw new EmptyCouponException();
 
-           if(!_items.Any())
-                throw new EmptyOrderException();
+           if (!coupon.IsValid())
+               throw new CouponNotValidException();
+
+           if (!_items.Any())
+               throw new EmptyOrderException();
 
            // Calculate the discount amount
            var discount = coupon.CalculateDiscount(SubTotal);
@@ -97,10 +100,36 @@ namespace e_commerse.Domain.Entities
            // Set the Discount Property with the Calculated discount
            Discount = new Money(discount, Currency.Value);
 
-           //Once the coupon is applied, mark it as used
-           coupon.Use();
+           // Set the CouponId property to the applied coupon's Id
+           CouponId = coupon.Id;
 
            Recalculate();
+        }
+
+        public void Pay(Coupon? coupon = null)
+        {
+            if(Status != OrderStatus.Pending)
+                throw new InvalidOrderStatusTransitionException();
+
+            if(coupon is not null)
+            {
+                if (!coupon.IsValid())
+                    throw new CouponNotValidException();
+
+                coupon.Use();
+            }
+
+            Status = OrderStatus.Paid;
+        }
+
+        public void Cancel()
+        {
+            if(Status != OrderStatus.Pending && Status != OrderStatus.Paid)
+            {
+                throw new CannotCancelOrderException();
+            }
+
+            Status = OrderStatus.Cancelled;
         }
 
         private void Recalculate()
@@ -123,9 +152,25 @@ namespace e_commerse.Domain.Entities
 
         public void UpdateStatus(OrderStatus newStatus)
         {
+           
             // Validate the new status transition
-            if (newStatus == OrderStatus.Completed)
-                throw new InvalidOperationException();
+            if (Status == OrderStatus.Delivered
+                || Status == OrderStatus.Cancelled 
+                || Status == OrderStatus.Failed)
+            {
+                throw new InvalidOrderStatusTransitionException();
+            }
+
+            // Ensure the sequence of status transitions is logical 
+            if (Status == OrderStatus.Paid && newStatus != OrderStatus.Shipped)
+            {
+                throw new InvalidOrderStatusTransitionException();
+            } 
+
+            if(Status == OrderStatus.Shipped && newStatus != OrderStatus.Delivered)
+            {
+                throw new InvalidOrderStatusTransitionException();
+            }
 
             // Update the order status
             Status = newStatus;
