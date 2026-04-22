@@ -23,5 +23,15 @@ namespace e_commerse.Domain.Entities
             CreatedAt = DateTime.UtcNow;
             IsVerifiedPurchase = isVerifiedPurchase;
         }
+
+        public void UpdateRating(ReviewRating newRating)
+        {
+            Rating = newRating;
+        }
+
+        public void UpdateComment(ReviewComment comment) 
+        {
+            this.Comment = comment;
+        }
     }
 }
