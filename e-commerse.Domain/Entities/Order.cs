@@ -5,8 +5,8 @@ using e_commerse.Domain.ValueObjects.Coupon;
 using e_commerse.Domain.ValueObjects.Order;
 using e_commerse.Domain.ValueObjects.Product;
 using e_commerse.Domain.ValueObjects.User;
-using e_commerse.Domain.ValueObjects;
 using e_commerse.Domain.Exceptions.Cart;
+using e_commerse.Domain.ValueObjects.Cart;
 
 namespace e_commerse.Domain.Entities
 {
@@ -15,6 +15,7 @@ namespace e_commerse.Domain.Entities
         public OrderId Id { get; private set; }
         public UserId UserId { get; private set; }
         public IReadOnlyCollection<OrderItem> Items => _items;
+        public IReadOnlyCollection<OrderStatusHistory> History => _history;
         public Money SubTotal { get; private set; }
         public Money Total { get; private set; }
         public CouponId CouponId { get; private set; }
@@ -25,6 +26,8 @@ namespace e_commerse.Domain.Entities
         public DateTime CreatedAt { get; private set; }
 
         private List<OrderItem> _items = new();
+        private List<OrderStatusHistory> _history = new();
+
 
         internal Order(OrderId id, UserId userId, ShippingAddress shippingAddress)
         {
@@ -33,6 +36,7 @@ namespace e_commerse.Domain.Entities
             Status = OrderStatus.Pending;
             this.ShippingAddress = shippingAddress;
             this.CreatedAt = DateTime.UtcNow;
+            
         }
 
         internal Order(OrderId id, UserId userId, ShippingAddress shippingAddress, List<OrderItem> items)
@@ -43,7 +47,11 @@ namespace e_commerse.Domain.Entities
             Status = OrderStatus.Pending;
             this.CreatedAt = DateTime.UtcNow;
             AddItems(items);
+            AddHistory("Order created");
         }
+
+        public void AddHistory(string note)
+            => _history.Add(new OrderStatusHistory(Id, Status, note));
 
         public void AddItem(OrderItem newItem)
         {
@@ -120,6 +128,7 @@ namespace e_commerse.Domain.Entities
             }
 
             Status = OrderStatus.Paid;
+            AddHistory("Order Paid");
         }
 
         public void Cancel()
@@ -130,6 +139,7 @@ namespace e_commerse.Domain.Entities
             }
 
             Status = OrderStatus.Cancelled;
+            AddHistory("Order Cancelled");
         }
 
         private void Recalculate()
@@ -174,6 +184,8 @@ namespace e_commerse.Domain.Entities
 
             // Update the order status
             Status = newStatus;
+
+            AddHistory($"Order status updated to {newStatus}");
         }
     }
 }

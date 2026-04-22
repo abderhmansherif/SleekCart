@@ -1,5 +1,4 @@
 ﻿using e_commerse.Domain.Exceptions.Cart;
-using e_commerse.Domain.ValueObjects;
 using e_commerse.Domain.ValueObjects.Cart;
 using e_commerse.Domain.ValueObjects.Product;
 using e_commerse.Domain.ValueObjects.User;

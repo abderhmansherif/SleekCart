@@ -1,9 +1,6 @@
 ﻿using e_commerse.Domain.Exceptions.Cart;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace e_commerse.Domain.ValueObjects
+namespace e_commerse.Domain.ValueObjects.Cart
 {
     public record Currency
     {
