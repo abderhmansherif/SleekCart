@@ -38,7 +38,7 @@ namespace e_commerse.Domain.Entities
             Status = OrderStatus.Pending;
             this.ShippingAddress = shippingAddress;
             this.CreatedAt = DateTime.UtcNow;
-            
+            AddHistory("Order created");
         }
 
         internal Order(OrderId id, UserId userId, ShippingAddress shippingAddress, List<OrderItem> items)
