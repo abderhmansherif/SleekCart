@@ -14,12 +14,12 @@ namespace e_commerse.Domain.Entities
         public PaymentProvider Provider { get; private set; }
         public DateTime CreatedAt { get; private set; }
 
-        internal Payment(PaymentId id, OrderId orderId, Money amount, PaymentStatus status, PaymentProvider provider)
+        internal Payment(PaymentId id, OrderId orderId, Money amount, PaymentProvider provider)
         {
             Id = id;
             OrderId = orderId;
             Amount = amount;
-            Status = status;
+            Status = PaymentStatus.Pending;
             Provider = provider;
             CreatedAt = DateTime.UtcNow;
         }

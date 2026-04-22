@@ -2,8 +2,9 @@
 {
     public enum PaymentStatus
     {
-        Succeeded = 0,
-        Failed = 1,
-        Refunded = 2,
+        Pending,
+        Succeeded,
+        Failed,
+        Refunded,
     }
 }

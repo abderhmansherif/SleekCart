@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Abstractions\Factories\" />
-    <Folder Include="Events\Payment\" />
     <Folder Include="Factories\" />
     <Folder Include="NewFolder\" />
   </ItemGroup>
