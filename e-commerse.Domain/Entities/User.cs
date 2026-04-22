@@ -1,10 +1,12 @@
-﻿using e_commerse.Domain.Enum.User;
+﻿using e_commerse.Domain.Abstractions.Domain;
+using e_commerse.Domain.Enums.User;
+using e_commerse.Domain.Events.User;
 using e_commerse.Domain.Exceptions.User;
 using e_commerse.Domain.ValueObjects.User;
 
 namespace e_commerse.Domain.Entities
 {
-    internal class User
+    internal class User: AggregateRoot
     {
         public UserId Id { get; private set; }
         public UserFullName FullName { get; private set; }
@@ -20,6 +22,9 @@ namespace e_commerse.Domain.Entities
             this.Email = email;
             this.Role = role;
             this.JoinedAt = DateTime.UtcNow;
+
+            // Raise UserCreatedEvent 
+            RaiseDomainEvent(new UserRegisteredEvent(this.Id, this.Email));
         }
 
         public void MarkAsDeleted()
