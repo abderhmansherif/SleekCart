@@ -2,6 +2,6 @@
 {
     public interface IDomainEvent
     {
-        DateTime DateTime { get; }
+        DateTime OccurredOn { get; }
     }
 }
