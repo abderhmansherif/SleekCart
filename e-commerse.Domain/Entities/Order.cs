@@ -7,10 +7,12 @@ using e_commerse.Domain.ValueObjects.Product;
 using e_commerse.Domain.ValueObjects.User;
 using e_commerse.Domain.Exceptions.Cart;
 using e_commerse.Domain.ValueObjects.Cart;
+using e_commerse.Domain.Abstractions.Domain;
+using e_commerse.Domain.Events.Order;
 
 namespace e_commerse.Domain.Entities
 {
-    internal class Order
+    internal class Order: AggregateRoot
     {
         public OrderId Id { get; private set; }
         public UserId UserId { get; private set; }
@@ -129,6 +131,9 @@ namespace e_commerse.Domain.Entities
 
             Status = OrderStatus.Paid;
             AddHistory("Order Paid");
+
+            // Domain Event for Order Placed
+            RaiseDomainEvent(new OrderPlacedEvent(this.UserId, this.Id, Items));
         }
 
         public void Cancel()
@@ -140,6 +145,9 @@ namespace e_commerse.Domain.Entities
 
             Status = OrderStatus.Cancelled;
             AddHistory("Order Cancelled");
+
+            // Domain Event for Order Cancelled
+            RaiseDomainEvent(new OrderCancelledEvent(this.UserId, this.Id));
         }
 
         private void Recalculate()
@@ -172,18 +180,28 @@ namespace e_commerse.Domain.Entities
             }
 
             // Ensure the sequence of status transitions is logical 
-            if (Status == OrderStatus.Paid && newStatus != OrderStatus.Shipped)
+            if (Status == OrderStatus.Paid && newStatus == OrderStatus.Confirmed)
             {
-                throw new InvalidOrderStatusTransitionException();
+                Status = newStatus;
+                RaiseDomainEvent(new OrderConfirmedEvent(this.UserId, this.Id));
             } 
 
-            if(Status == OrderStatus.Shipped && newStatus != OrderStatus.Delivered)
+            else if(Status == OrderStatus.Confirmed && newStatus == OrderStatus.Shipped)
+            {
+                Status = newStatus;
+                RaiseDomainEvent(new OrderShippedEvent(this.UserId, this.Id));
+            }
+
+            else if(Status == OrderStatus.Shipped && newStatus == OrderStatus.Delivered)
+            {
+                Status = newStatus;
+                RaiseDomainEvent(new OrderDeliveredEvent(this.UserId, this.Id));
+            }
+
+            else
             {
                 throw new InvalidOrderStatusTransitionException();
             }
-
-            // Update the order status
-            Status = newStatus;
 
             AddHistory($"Order status updated to {newStatus}");
         }

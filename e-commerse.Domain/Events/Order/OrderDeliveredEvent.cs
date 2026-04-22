@@ -9,7 +9,7 @@ namespace e_commerse.Domain.Events.Order
         public OrderId OrderId { get; }
         public UserId UserId { get; }
         public DateTime OccurredOn { get; }
-        public OrderDeliveredEvent(OrderId orderId, UserId userId)
+        public OrderDeliveredEvent(UserId userId, OrderId orderId)
         {
             OrderId = orderId;
             UserId = userId;
