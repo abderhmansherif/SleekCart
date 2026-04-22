@@ -98,6 +98,8 @@ namespace e_commerse.Domain.Entities
            Discount = new Money(discount, Currency.Value);
 
            //Once the coupon is applied, mark it as used
+           coupon.Use();
+
            Recalculate();
         }
 

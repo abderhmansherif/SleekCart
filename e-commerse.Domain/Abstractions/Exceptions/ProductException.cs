@@ -1,6 +1,6 @@
 ﻿namespace e_commerse.Domain.Abstractions.Exceptions
 {
-    public class ProductException : Exception
+    public class ProductException : DomainException
     {
         public ProductException(string msg) :base(msg)
         {

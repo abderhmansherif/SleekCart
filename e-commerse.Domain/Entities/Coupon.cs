@@ -72,6 +72,11 @@ namespace e_commerse.Domain.Entities
                 return 0;
             }
 
+            if(!IsValid())
+            {
+                throw new CouponNotValidException();
+            }
+
             // Ensure the discount value and the amount are in the same currency
             if (DiscountValue.Currency != amount.Currency)
             {

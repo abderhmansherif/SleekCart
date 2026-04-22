@@ -1,6 +1,6 @@
 ﻿namespace e_commerse.Domain.Abstractions.Exceptions
 {
-    public class CouponException : Exception
+    public class CouponException : DomainException
     {
         public CouponException(string msg) : base(msg)
         {

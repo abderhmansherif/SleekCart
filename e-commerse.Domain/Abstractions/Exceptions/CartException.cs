@@ -1,6 +1,6 @@
 ﻿namespace e_commerse.Domain.Abstractions.Exceptions
 {
-    public class CartException: Exception
+    public abstract class CartException : DomainException
     {
         public CartException(string msg): base(msg)
         {
