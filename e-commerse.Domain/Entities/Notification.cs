@@ -5,7 +5,7 @@ using e_commerse.Domain.ValueObjects.User;
 
 namespace e_commerse.Domain.Entities
 {
-    internal class Notification
+    public class Notification
     {
         public NotificationId Id { get; private set; }
         public UserId UserId { get; private set; }
