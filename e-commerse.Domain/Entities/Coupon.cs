@@ -6,7 +6,7 @@ using e_commerse.Domain.ValueObjects.Product;
 
 namespace e_commerse.Domain.Entities
 {
-    internal class Coupon
+    public class Coupon
     {
         public CouponId Id { get; private set; }
         public CouponCode Code { get; private set; }
@@ -14,8 +14,8 @@ namespace e_commerse.Domain.Entities
         public Money DiscountValue { get; private set; }
         public bool IsUsed { get; private set; } = false;
         public bool IsPercentage { get; private set; } 
-        public UsageLimit UsageLimit { get; private set; }
-        public UsedCount UsedCount { get; private set; }
+        public UsageLimit? UsageLimit { get; private set; }
+        public UsedCount? UsedCount { get; private set; }
         public DateTime ExpiryDate { get; private set; }
         public DateTime CreatedAt { get; private set; }
 
@@ -58,7 +58,7 @@ namespace e_commerse.Domain.Entities
             // For multi-use coupons, check if the usage limit has not been exceeded
             if (Type == CouponType.MultiUse)
             {
-                return UsedCount < UsageLimit;
+                return UsedCount! < UsageLimit!;
             }
 
             return false;
@@ -106,7 +106,7 @@ namespace e_commerse.Domain.Entities
 
             // For multi-use coupons, increment the used count
             else if (Type == CouponType.MultiUse)
-               UsedCount++;
+               UsedCount!++;
         }
 
     }
