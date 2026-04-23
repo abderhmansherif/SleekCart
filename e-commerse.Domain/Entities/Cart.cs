@@ -5,7 +5,7 @@ using e_commerse.Domain.ValueObjects.User;
 
 namespace e_commerse.Domain.Entities
 {
-    internal class Cart
+    public class Cart
     {
         public CartId Id { get; private set; }
         public UserId UserId { get; private set; }
@@ -15,7 +15,7 @@ namespace e_commerse.Domain.Entities
 
         private List<CartItem> _items = new();
 
-        public Cart(CartId id, UserId userId)
+        internal Cart(CartId id, UserId userId)
         {
             Id = id;
             UserId = userId;    
