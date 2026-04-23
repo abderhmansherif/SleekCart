@@ -13,8 +13,4 @@
     <None Remove="Factories\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Abstractions\Factories\" />
-  </ItemGroup>
-
 </Project>

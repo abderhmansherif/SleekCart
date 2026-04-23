@@ -5,7 +5,7 @@ using e_commerse.Domain.ValueObjects.ProductImage;
 
 namespace e_commerse.Domain.Entities
 {
-    internal class Product
+    public class Product
     {
         public ProductId Id { get; private set; }
         public ProductName Name { get; private set; }

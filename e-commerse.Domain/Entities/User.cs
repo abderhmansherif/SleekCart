@@ -6,7 +6,7 @@ using e_commerse.Domain.ValueObjects.User;
 
 namespace e_commerse.Domain.Entities
 {
-    internal class User: AggregateRoot
+    public class User: AggregateRoot
     {
         public UserId Id { get; private set; }
         public UserFullName FullName { get; private set; }
