@@ -12,7 +12,7 @@ using e_commerse.Domain.Events.Order;
 
 namespace e_commerse.Domain.Entities
 {
-    internal class Order: AggregateRoot
+    public class Order: AggregateRoot
     {
         public OrderId Id { get; private set; }
         public UserId UserId { get; private set; }
