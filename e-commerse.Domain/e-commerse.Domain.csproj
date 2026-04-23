@@ -8,8 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Factories\**" />
+    <EmbeddedResource Remove="Factories\**" />
+    <None Remove="Factories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Abstractions\Factories\" />
-    <Folder Include="Factories\" />
   </ItemGroup>
 
 </Project>
