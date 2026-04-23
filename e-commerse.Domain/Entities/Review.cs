@@ -4,7 +4,7 @@ using e_commerse.Domain.ValueObjects.User;
 
 namespace e_commerse.Domain.Entities
 {
-    internal class Review
+    public class Review
     {
         public UserId UserId { get; private set; }
         public ProductId ProductId { get; private set; }
