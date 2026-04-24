@@ -7,12 +7,14 @@ namespace e_commerse.Domain.ValueObjects.Product
         public CartId CartId { get; private set; }
         public int Quantity { get; private set; }
         public DateTime ExpiryDate { get; private set; }
+        public bool IsExpired => DateTime.UtcNow > ExpiryDate;
+        private StockReservation() { }  
 
-        public StockReservation(CartId cartId, int quantity, DateTime expiryDate)
+        public StockReservation(CartId cartId, int quantity, TimeSpan duration)
         {
             CartId = cartId;
             Quantity = quantity;
-            ExpiryDate = expiryDate;
+            ExpiryDate = DateTime.UtcNow.Add(duration);
         }
     }
 }

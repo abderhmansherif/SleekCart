@@ -1,4 +1,5 @@
 ﻿using e_commerse.Domain.Exceptions.Product;
+using e_commerse.Domain.ValueObjects.Cart;
 using e_commerse.Domain.ValueObjects.Category;
 using e_commerse.Domain.ValueObjects.Product;
 using e_commerse.Domain.ValueObjects.ProductImage;
@@ -14,9 +15,12 @@ namespace e_commerse.Domain.Entities
         public StockQuantity StockQuantity { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public CategoryId? CategoryId { get; private set; }
-        public IReadOnlyCollection<ProductImage> ProductImages => _images;
+        public IReadOnlyCollection<ProductImage> ProductImages => _images.AsReadOnly();
+        public IReadOnlyCollection<StockReservation> StockReservations => _stockReservations.AsReadOnly();
 
         private List<ProductImage> _images = new();
+
+        private List<StockReservation> _stockReservations = new();
         private Product() { }
 
         internal Product(ProductId id, ProductName name, ProductDescription description, 
@@ -40,6 +44,64 @@ namespace e_commerse.Domain.Entities
             this.CategoryId = categoryId;
             this.StockQuantity = stockQuantity;
             this.CreatedAt = DateTime.UtcNow;
+        }
+
+        public void ReserveStock(CartId cartId, int quantity, TimeSpan duration)
+        {
+            if (quantity <= 0)
+                throw new InvalidQuantityException();
+
+            // Check if requested quantity exceeds available stock
+            if (quantity > StockQuantity.Value)
+                throw new InsufficientStockException();
+
+            var reservedQuantity = _stockReservations.Where(r => !r.IsExpired).Sum(r => r.Quantity);
+
+            // Must account for active reservations to prevent overselling
+            if (StockQuantity.Value - reservedQuantity < quantity)
+                throw new InsufficientStockException();
+
+            var reservation = _stockReservations.FirstOrDefault(s => s.CartId == cartId);
+
+            if (reservation is not null)
+            {
+                throw new StockAlreadyReservedException();
+            }
+
+            _stockReservations.Add(new StockReservation(cartId, quantity, duration));
+        }
+
+        public void ConfirmReservation(CartId cartId)
+        {
+            var reservation = _stockReservations.FirstOrDefault(s => s.CartId == cartId);
+
+            if(reservation is null)
+            {
+                throw new StockReservationNotFoundException();
+            }
+
+            if (reservation.IsExpired)
+            {
+                ReleaseReservation(cartId);
+
+                throw new StockReservationExpiredException();
+            }
+
+            DecreaseStockQuantity(reservation.Quantity);
+
+            _stockReservations.Remove(reservation);
+        }
+
+        public void ReleaseReservation(CartId cartId)
+        {
+            var reservation = _stockReservations.FirstOrDefault(s => s.CartId == cartId && s.IsExpired);
+
+            if (reservation is null)
+            {
+                throw new StockReservationNotFoundException();
+            }
+
+            _stockReservations.Remove(reservation);
         }
 
         public void ChangeCategory(CategoryId newCategoryId)
@@ -100,7 +162,7 @@ namespace e_commerse.Domain.Entities
 
         public void DecreaseStockQuantity(int amount)
         {
-            if (amount < 0)
+            if (amount <= 0)
                 throw new InvalidStockOperationException("Amount to decrease cannot be negative.");
 
             if (amount > this.StockQuantity.Value)
@@ -111,7 +173,7 @@ namespace e_commerse.Domain.Entities
 
         public void IncreaseStockQuantity(int amount)
         {
-            if (amount < 0)
+            if (amount <= 0)
                 throw new InvalidStockOperationException("Amount to increase cannot be negative.");
 
             StockQuantity = StockQuantity + amount;
