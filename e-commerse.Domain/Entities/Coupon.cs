@@ -12,7 +12,7 @@ namespace e_commerse.Domain.Entities
         public CouponCode Code { get; private set; }
         public CouponType Type { get; private set; }
         public Money DiscountValue { get; private set; }
-        public bool IsUsed { get; private set; } = false;
+        public bool IsUsed { get; private set; }
         public bool IsPercentage { get; private set; } 
         public UsageLimit? UsageLimit { get; private set; }
         public UsedCount? UsedCount { get; private set; }
@@ -26,6 +26,7 @@ namespace e_commerse.Domain.Entities
             this.IsPercentage = isPercentage;
             this.Type = CouponType.SingleUse;
             this.ExpiryDate = expiryDate;
+            this.IsUsed = false;
             this.CreatedAt = DateTime.UtcNow;
         }
 
