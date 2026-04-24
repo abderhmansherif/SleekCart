@@ -13,7 +13,7 @@ namespace e_commerse.Domain.Entities
         public Money Price { get; private set; }
         public StockQuantity StockQuantity { get; private set; }
         public DateTime CreatedAt { get; private set; }
-        public CategoryId CategoryId { get; private set; }
+        public CategoryId? CategoryId { get; private set; }
         public IReadOnlyCollection<ProductImage> ProductImages => _images;
 
         private List<ProductImage> _images = new();
