@@ -9,7 +9,13 @@ namespace e_commerse.Domain.Abstractions.Factories
 {
     public interface IPaymentFactory
     {
-        Payment Create(PaymentId id, OrderId orderId, UserId userId,
-            Money amount, PaymentProvider provider);
+        Payment CreateStripePayment(PaymentId id, OrderId orderId, UserId userId,
+            Money amount);
+
+        Payment CreatePayPalPayment(PaymentId id, OrderId orderId, UserId userId,
+            Money amount);
+        
+        Payment CreateCashPayment(PaymentId id, OrderId orderId, UserId userId,
+            Money amount);
     }
 }
