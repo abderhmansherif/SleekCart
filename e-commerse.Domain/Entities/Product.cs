@@ -51,10 +51,6 @@ namespace e_commerse.Domain.Entities
             if (quantity <= 0)
                 throw new InvalidQuantityException();
 
-            // Check if requested quantity exceeds available stock
-            if (quantity > StockQuantity.Value)
-                throw new InsufficientStockException();
-
             var reservedQuantity = _stockReservations.Where(r => !r.IsExpired).Sum(r => r.Quantity);
 
             // Must account for active reservations to prevent overselling
@@ -63,12 +59,16 @@ namespace e_commerse.Domain.Entities
 
             var reservation = _stockReservations.FirstOrDefault(s => s.CartId == cartId);
 
+            // That't means the reservation need to update the quantity and expiry date, otherwise create a new reservation
             if (reservation is not null)
             {
-                throw new StockAlreadyReservedException();
+                _stockReservations.Remove(reservation);
+                _stockReservations.Add(new StockReservation(cartId, quantity, duration));
             }
-
-            _stockReservations.Add(new StockReservation(cartId, quantity, duration));
+            else 
+            {
+                _stockReservations.Add(new StockReservation(cartId, quantity, duration));
+            }
         }
 
         public void ConfirmReservation(CartId cartId)
