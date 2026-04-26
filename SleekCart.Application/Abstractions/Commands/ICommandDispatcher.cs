@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SleekCart.Application.Abstractions.Commands
+﻿namespace SleekCart.Application.Abstractions.Commands
 {
-    internal interface ICommandDispatcher
+    public interface ICommandDispatcher
     {
+        Task DispatchAsync<TCommand>(TCommand command, CancellationToken ct) where TCommand : ICommand;
     }
 }
