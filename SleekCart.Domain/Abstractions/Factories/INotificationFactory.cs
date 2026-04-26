@@ -1,6 +1,7 @@
-﻿using e_commerse.Domain.Entities;
-using e_commerse.Domain.ValueObjects.Notification;
-using e_commerse.Domain.ValueObjects.User;
+﻿
+using SleekCart.Domain.Entities;
+using SleekCart.Domain.ValueObjects.Notification;
+using SleekCart.Domain.ValueObjects.User;
 
 namespace e_commerse.Domain.Abstractions.Factories
 {

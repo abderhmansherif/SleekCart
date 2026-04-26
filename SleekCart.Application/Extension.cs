@@ -16,7 +16,6 @@ namespace SleekCart.Application
                 .AsImplementedInterfaces()
                 .WithScopedLifetime());
 
-
             return services;
         }
     }

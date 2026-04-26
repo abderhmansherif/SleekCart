@@ -1,6 +1,8 @@
-﻿using e_commerse.Domain.Abstractions.Factories;
-using e_commerse.Domain.Entities;
+﻿
+using e_commerse.Domain.Abstractions.Factories;
 using e_commerse.Domain.ValueObjects.Coupon;
+using SleekCart.Domain.Entities;
+using SleekCart.Domain.ValueObjects.Coupon;
 
 namespace e_commerse.Domain.Factories
 {

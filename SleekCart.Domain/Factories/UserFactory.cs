@@ -1,7 +1,7 @@
 ﻿using e_commerse.Domain.Abstractions.Factories;
-using e_commerse.Domain.Entities;
-using e_commerse.Domain.Enums.User;
-using e_commerse.Domain.ValueObjects.User;
+using SleekCart.Domain.Entities;
+using SleekCart.Domain.Enums.User;
+using SleekCart.Domain.ValueObjects.User;
 
 namespace e_commerse.Domain.Factories
 {

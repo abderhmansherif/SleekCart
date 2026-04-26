@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\e-commerse\e-commerse.Domain\SleekCart.Domain.csproj" />
+    <ProjectReference Include="..\SleekCart.Domain\SleekCart.Domain.csproj" />
     <ProjectReference Include="..\SleekCart.Shared\SleekCart.Shared.csproj" />
   </ItemGroup>
 

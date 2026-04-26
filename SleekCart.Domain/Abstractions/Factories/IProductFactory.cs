@@ -1,6 +1,6 @@
-﻿using e_commerse.Domain.Entities;
-using e_commerse.Domain.ValueObjects.Category;
-using e_commerse.Domain.ValueObjects.Product;
+﻿using SleekCart.Domain.Entities;
+using SleekCart.Domain.ValueObjects.Category;
+using SleekCart.Domain.ValueObjects.Product;
 
 namespace e_commerse.Domain.Abstractions.Factories
 {
