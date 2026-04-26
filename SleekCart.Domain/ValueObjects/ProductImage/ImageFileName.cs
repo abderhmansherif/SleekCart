@@ -1,6 +1,6 @@
 ﻿using e_commerse.Domain.Exceptions.ProductImage;
 
-namespace e_commerse.Domain.ValueObjects.ProductImage
+namespace SleekCart.Domain.ValueObjects.ProductImage
 {
     public record ImageFileName
     {

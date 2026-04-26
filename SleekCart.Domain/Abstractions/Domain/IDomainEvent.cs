@@ -1,4 +1,4 @@
-﻿namespace e_commerse.Domain.Abstractions.Domain
+﻿namespace SleekCart.Domain.Abstractions.Domain
 {
     public interface IDomainEvent
     {

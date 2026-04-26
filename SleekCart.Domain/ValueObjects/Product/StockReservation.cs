@@ -1,6 +1,6 @@
-﻿using e_commerse.Domain.ValueObjects.Cart;
-
-namespace e_commerse.Domain.ValueObjects.Product
+﻿
+using SleekCart.Domain.ValueObjects.Cart;
+namespace SleekCart.Domain.ValueObjects.Product
 {
     public record StockReservation
     {

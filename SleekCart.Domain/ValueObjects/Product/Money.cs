@@ -1,7 +1,7 @@
 ﻿using e_commerse.Domain.Exceptions.Cart;
 using e_commerse.Domain.Exceptions.Product;
 
-namespace e_commerse.Domain.ValueObjects.Product
+namespace SleekCart.Domain.ValueObjects.Product
 {
     public record Money
     {

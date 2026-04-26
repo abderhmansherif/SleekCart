@@ -1,4 +1,4 @@
-﻿namespace e_commerse.Domain.Enums.Order
+﻿namespace SleekCart.Domain.Enums.Order
 {
     public enum OrderStatus
     {

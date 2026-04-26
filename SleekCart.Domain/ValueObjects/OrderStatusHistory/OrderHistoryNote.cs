@@ -1,6 +1,6 @@
 ﻿using e_commerse.Domain.Exceptions.OrderStatusHistory;
 
-namespace e_commerse.Domain.ValueObjects.OrderStatusHistory
+namespace SleekCart.Domain.ValueObjects.OrderStatusHistory
 {
     public record OrderHistoryNote
     {

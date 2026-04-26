@@ -1,16 +1,16 @@
-﻿using e_commerse.Domain.Exceptions.Coupon;
-using e_commerse.Domain.Enums.Order;
+﻿using SleekCart.Domain.Enums.Order;
+using SleekCart.Domain.ValueObjects.Coupon;
+using SleekCart.Domain.ValueObjects.Order;
+using SleekCart.Domain.ValueObjects.Product;
+using SleekCart.Domain.ValueObjects.User;
+using SleekCart.Domain.ValueObjects.Cart;
+using SleekCart.Domain.Abstractions.Domain;
+using SleekCart.Domain.Events.Order;
 using e_commerse.Domain.Exceptions.Order;
-using e_commerse.Domain.ValueObjects.Coupon;
-using e_commerse.Domain.ValueObjects.Order;
-using e_commerse.Domain.ValueObjects.Product;
-using e_commerse.Domain.ValueObjects.User;
 using e_commerse.Domain.Exceptions.Cart;
-using e_commerse.Domain.ValueObjects.Cart;
-using e_commerse.Domain.Abstractions.Domain;
-using e_commerse.Domain.Events.Order;
+using e_commerse.Domain.Exceptions.Coupon;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class Order: AggregateRoot
     {

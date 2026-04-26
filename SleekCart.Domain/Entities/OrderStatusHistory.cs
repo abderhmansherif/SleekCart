@@ -1,8 +1,8 @@
-﻿using e_commerse.Domain.Enums.Order;
-using e_commerse.Domain.ValueObjects.Order;
-using e_commerse.Domain.ValueObjects.OrderStatusHistory;
+﻿using SleekCart.Domain.Enums.Order;
+using SleekCart.Domain.ValueObjects.Order;
+using SleekCart.Domain.ValueObjects.OrderStatusHistory;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class OrderStatusHistory
     {

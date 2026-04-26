@@ -1,4 +1,4 @@
-﻿namespace e_commerse.Domain.Enums.Payment
+﻿namespace SleekCart.Domain.Enums.Payment
 {
     public enum PaymentProvider
     {

@@ -1,6 +1,7 @@
-﻿using e_commerse.Domain.Exceptions.Category;
+﻿
+using e_commerse.Domain.Exceptions.Category;
 
-namespace e_commerse.Domain.ValueObjects.Category
+namespace SleekCart.Domain.ValueObjects.Category
 {
     public record CategoryId
     {

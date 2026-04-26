@@ -1,6 +1,6 @@
 ﻿using e_commerse.Domain.Exceptions.Review;
 
-namespace e_commerse.Domain.ValueObjects.Review
+namespace SleekCart.Domain.ValueObjects.Review
 {
     public record ReviewComment
     {

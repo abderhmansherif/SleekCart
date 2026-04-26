@@ -1,6 +1,6 @@
 ﻿using e_commerse.Domain.Exceptions.Payment;
 
-namespace e_commerse.Domain.ValueObjects.Payment
+namespace SleekCart.Domain.ValueObjects.Payment
 {
     public record PaymentId
     {

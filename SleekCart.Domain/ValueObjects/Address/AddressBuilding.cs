@@ -1,6 +1,7 @@
-﻿using e_commerse.Domain.Exceptions.Address;
+﻿
+using e_commerse.Domain.Exceptions.Address;
 
-namespace e_commerse.Domain.ValueObjects.Address
+namespace SleekCart.Domain.ValueObjects.Address
 {
     public record AddressBuilding
     {

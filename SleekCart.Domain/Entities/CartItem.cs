@@ -1,7 +1,7 @@
-﻿using e_commerse.Domain.ValueObjects.Cart;
-using e_commerse.Domain.ValueObjects.Product;
+﻿using SleekCart.Domain.ValueObjects.Cart;
+using SleekCart.Domain.ValueObjects.Product;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class CartItem
     {

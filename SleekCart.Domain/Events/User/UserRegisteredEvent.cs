@@ -1,7 +1,8 @@
-﻿using e_commerse.Domain.Abstractions.Domain;
-using e_commerse.Domain.ValueObjects.User;
+﻿
+using SleekCart.Domain.Abstractions.Domain;
+using SleekCart.Domain.ValueObjects.User;
 
-namespace e_commerse.Domain.Events.User
+namespace SleekCart.Domain.Events.User
 {
     public record UserRegisteredEvent : IDomainEvent
     {

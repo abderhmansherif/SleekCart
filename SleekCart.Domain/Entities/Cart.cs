@@ -1,9 +1,9 @@
 ﻿using e_commerse.Domain.Exceptions.Cart;
-using e_commerse.Domain.ValueObjects.Cart;
-using e_commerse.Domain.ValueObjects.Product;
-using e_commerse.Domain.ValueObjects.User;
+using SleekCart.Domain.ValueObjects.Cart;
+using SleekCart.Domain.ValueObjects.Product;
+using SleekCart.Domain.ValueObjects.User;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class Cart
     {

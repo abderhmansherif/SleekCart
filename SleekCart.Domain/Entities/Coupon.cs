@@ -1,10 +1,11 @@
-﻿using e_commerse.Domain.Enums.Coupon;
-using e_commerse.Domain.Exceptions.Cart;
+﻿using e_commerse.Domain.Exceptions.Cart;
 using e_commerse.Domain.Exceptions.Coupon;
 using e_commerse.Domain.ValueObjects.Coupon;
-using e_commerse.Domain.ValueObjects.Product;
+using SleekCart.Domain.Enums.Coupon;
+using SleekCart.Domain.ValueObjects.Coupon;
+using SleekCart.Domain.ValueObjects.Product;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class Coupon
     {

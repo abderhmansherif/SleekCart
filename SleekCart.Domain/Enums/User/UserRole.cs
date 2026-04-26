@@ -1,4 +1,4 @@
-﻿namespace e_commerse.Domain.Enums.User
+﻿namespace SleekCart.Domain.Enums.User
 {
     public enum UserRole
     {

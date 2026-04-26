@@ -1,10 +1,10 @@
 ﻿using e_commerse.Domain.Exceptions.Product;
-using e_commerse.Domain.ValueObjects.Cart;
-using e_commerse.Domain.ValueObjects.Category;
-using e_commerse.Domain.ValueObjects.Product;
-using e_commerse.Domain.ValueObjects.ProductImage;
+using SleekCart.Domain.ValueObjects.Cart;
+using SleekCart.Domain.ValueObjects.Category;
+using SleekCart.Domain.ValueObjects.Product;
+using SleekCart.Domain.ValueObjects.ProductImage;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class Product
     {

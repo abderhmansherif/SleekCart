@@ -1,6 +1,6 @@
 ﻿using e_commerse.Domain.Exceptions.Coupon;
 
-namespace e_commerse.Domain.ValueObjects.Coupon
+namespace SleekCart.Domain.ValueObjects.Coupon
 {
     public record CouponId
     {

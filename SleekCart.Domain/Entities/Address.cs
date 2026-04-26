@@ -1,7 +1,7 @@
-﻿using e_commerse.Domain.ValueObjects.Address;
-using e_commerse.Domain.ValueObjects.User;
+﻿using SleekCart.Domain.ValueObjects.Address;
+using SleekCart.Domain.ValueObjects.User;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class Address
     {

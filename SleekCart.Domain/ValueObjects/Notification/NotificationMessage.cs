@@ -1,6 +1,6 @@
 ﻿using e_commerse.Domain.Exceptions.Notification;
 
-namespace e_commerse.Domain.ValueObjects.Notification
+namespace SleekCart.Domain.ValueObjects.Notification
 {
     public record NotificationMessage
     {

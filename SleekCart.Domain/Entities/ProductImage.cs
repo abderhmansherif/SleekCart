@@ -1,8 +1,9 @@
-﻿using e_commerse.Domain.Exceptions.ProductImage;
-using e_commerse.Domain.ValueObjects.Product;
-using e_commerse.Domain.ValueObjects.ProductImage;
+﻿
+using e_commerse.Domain.Exceptions.ProductImage;
+using SleekCart.Domain.ValueObjects.Product;
+using SleekCart.Domain.ValueObjects.ProductImage;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class ProductImage
     {

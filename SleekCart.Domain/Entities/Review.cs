@@ -1,8 +1,8 @@
-﻿using e_commerse.Domain.ValueObjects.Product;
-using e_commerse.Domain.ValueObjects.Review;
-using e_commerse.Domain.ValueObjects.User;
+﻿using SleekCart.Domain.ValueObjects.Product;
+using SleekCart.Domain.ValueObjects.Review;
+using SleekCart.Domain.ValueObjects.User;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class Review
     {

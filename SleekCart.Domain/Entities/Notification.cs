@@ -1,9 +1,8 @@
-﻿using e_commerse.Domain.Enums.Notification;
-using e_commerse.Domain.Exceptions.Notification;
-using e_commerse.Domain.ValueObjects.Notification;
-using e_commerse.Domain.ValueObjects.User;
-
-namespace e_commerse.Domain.Entities
+﻿using e_commerse.Domain.Exceptions.Notification;
+using SleekCart.Domain.Enums.Notification;
+using SleekCart.Domain.ValueObjects.Notification;
+using SleekCart.Domain.ValueObjects.User;
+namespace SleekCart.Domain.Entities
 {
     public class Notification
     {

@@ -1,10 +1,11 @@
-﻿using e_commerse.Domain.Abstractions.Domain;
-using e_commerse.Domain.ValueObjects.Order;
-using e_commerse.Domain.ValueObjects.Payment;
-using e_commerse.Domain.ValueObjects.Product;
-using e_commerse.Domain.ValueObjects.User;
+﻿
+using SleekCart.Domain.Abstractions.Domain;
+using SleekCart.Domain.ValueObjects.Order;
+using SleekCart.Domain.ValueObjects.Payment;
+using SleekCart.Domain.ValueObjects.Product;
+using SleekCart.Domain.ValueObjects.User;
 
-namespace e_commerse.Domain.Events.Payment
+namespace SleekCart.Domain.Events.Payment
 {
     public record PaymentSucceededEvent : IDomainEvent
     {

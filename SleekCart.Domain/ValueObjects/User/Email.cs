@@ -1,6 +1,6 @@
 ﻿using e_commerse.Domain.Exceptions.User;
 
-namespace e_commerse.Domain.ValueObjects.User
+namespace SleekCart.Domain.ValueObjects.User
 {
     public record Email
     {

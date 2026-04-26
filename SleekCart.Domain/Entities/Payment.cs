@@ -1,12 +1,12 @@
-﻿using e_commerse.Domain.Abstractions.Domain;
-using e_commerse.Domain.Enums.Payment;
-using e_commerse.Domain.Events.Payment;
-using e_commerse.Domain.ValueObjects.Order;
-using e_commerse.Domain.ValueObjects.Payment;
-using e_commerse.Domain.ValueObjects.Product;
-using e_commerse.Domain.ValueObjects.User;
+﻿using SleekCart.Domain.Abstractions.Domain;
+using SleekCart.Domain.Enums.Payment;
+using SleekCart.Domain.Events.Payment;
+using SleekCart.Domain.ValueObjects.Order;
+using SleekCart.Domain.ValueObjects.Payment;
+using SleekCart.Domain.ValueObjects.Product;
+using SleekCart.Domain.ValueObjects.User;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class Payment : AggregateRoot
     {

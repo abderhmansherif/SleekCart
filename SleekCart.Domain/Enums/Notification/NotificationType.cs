@@ -1,4 +1,4 @@
-﻿namespace e_commerse.Domain.Enums.Notification
+﻿namespace SleekCart.Domain.Enums.Notification
 {
     public enum NotificationType
     {

@@ -1,9 +1,9 @@
-﻿using e_commerse.Domain.Abstractions.Domain;
-using e_commerse.Domain.Entities;
-using e_commerse.Domain.ValueObjects.Order;
-using e_commerse.Domain.ValueObjects.User;
+﻿using SleekCart.Domain.Abstractions.Domain;
+using SleekCart.Domain.Entities;
+using SleekCart.Domain.ValueObjects.Order;
+using SleekCart.Domain.ValueObjects.User;
 
-namespace e_commerse.Domain.Events.Order
+namespace SleekCart.Domain.Events.Order
 {
     public record OrderPlacedEvent : IDomainEvent
     {

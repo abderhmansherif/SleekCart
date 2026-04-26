@@ -1,4 +1,4 @@
-﻿namespace e_commerse.Domain.Enums.Coupon
+﻿namespace SleekCart.Domain.Enums.Coupon
 {
     public enum CouponType
     {

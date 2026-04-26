@@ -1,11 +1,12 @@
-﻿using e_commerse.Domain.Abstractions.Domain;
-using e_commerse.Domain.Enums.User;
-using e_commerse.Domain.Events.User;
+﻿
 using e_commerse.Domain.Exceptions.User;
-using e_commerse.Domain.ValueObjects.Address;
-using e_commerse.Domain.ValueObjects.User;
+using SleekCart.Domain.Abstractions.Domain;
+using SleekCart.Domain.Enums.User;
+using SleekCart.Domain.Events.User;
+using SleekCart.Domain.ValueObjects.Address;
+using SleekCart.Domain.ValueObjects.User;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class User: AggregateRoot
     {

@@ -1,6 +1,6 @@
-﻿using e_commerse.Domain.ValueObjects.Category;
+﻿using SleekCart.Domain.ValueObjects.Category;
 
-namespace e_commerse.Domain.Entities
+namespace SleekCart.Domain.Entities
 {
     public class Category
     {

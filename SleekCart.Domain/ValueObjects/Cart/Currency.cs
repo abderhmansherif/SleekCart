@@ -1,6 +1,7 @@
-﻿using e_commerse.Domain.Exceptions.Cart;
+﻿
+using e_commerse.Domain.Exceptions.Cart;
 
-namespace e_commerse.Domain.ValueObjects.Cart
+namespace SleekCart.Domain.ValueObjects.Cart
 {
     public record Currency
     {

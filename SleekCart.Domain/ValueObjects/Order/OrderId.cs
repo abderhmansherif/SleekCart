@@ -1,6 +1,6 @@
 ﻿using e_commerse.Domain.Exceptions.Order;
 
-namespace e_commerse.Domain.ValueObjects.Order
+namespace SleekCart.Domain.ValueObjects.Order
 {
     public record OrderId
     {
