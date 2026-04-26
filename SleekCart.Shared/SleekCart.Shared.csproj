@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SleekCart.Application\SleekCart.Application.csproj" />
+    <ProjectReference Include="..\SleekCart.Shared.Abstractions\SleekCart.Shared.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
