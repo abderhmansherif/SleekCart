@@ -1,9 +1,10 @@
 using e_commerse.Domain.Abstractions.Factories;
 using e_commerse.Domain.Abstractions.Repositories;
 using SleekCart.Application.Abstractions.Commands;
+using SleekCart.Application.RegisterUser;
 
 
-namespace SleekCart.Application.Commands.Handlers;
+namespace SleekCart.Application.Commands.RegisterUser;
 
 public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
 {
