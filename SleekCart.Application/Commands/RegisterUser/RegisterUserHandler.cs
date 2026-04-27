@@ -34,7 +34,7 @@ public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
 
         var (fullName, email, password) = command;
 
-        var user = await _userRepository.GetAsync(email);
+        var user = await _userRepository.GetAsync(email, ct);
 
         if(user is not null)
         {
@@ -45,6 +45,6 @@ public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
 
         var newUser = _userFactory.CreateCustomer(uerId, fullName, email);
 
-        await _userRepository.InsertAsync(newUser);
+        await _userRepository.InsertAsync(newUser, ct);
     }
 }
