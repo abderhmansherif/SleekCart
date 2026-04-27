@@ -5,9 +5,9 @@ namespace e_commerse.Domain.Abstractions.Repositories
 {
     public interface IUserRepository
     {
-        Task<User> GetAsync(Email userId);
-        Task InsertAsync(User user);
-        Task UpdateAsync(User user);
-        Task DeleteAsync(Email userId);
+        Task<User> GetAsync(Email userId, CancellationToken ct);
+        Task InsertAsync(User user, CancellationToken ct);
+        Task UpdateAsync(User user, CancellationToken ct);
+        Task DeleteAsync(Email userId, CancellationToken ct);
     }
 }
