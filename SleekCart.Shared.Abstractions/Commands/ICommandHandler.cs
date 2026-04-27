@@ -4,4 +4,9 @@
     {
         Task HandleAsync(TCommand command, CancellationToken ct);
     }
+
+    public interface ICommandHandler<TCommand, TResponse>
+    {
+        Task<TResponse> HandleAsync(TCommand command, CancellationToken ct);
+    }
 }
