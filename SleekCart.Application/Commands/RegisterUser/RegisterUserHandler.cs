@@ -29,7 +29,7 @@ public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
 
         if(!result.IsValid)
         {
-            throw new ValidationException(result.Errors);
+            throw new ValidationFailedException(result.Errors);
         }
 
         var (fullName, email, password) = command;
