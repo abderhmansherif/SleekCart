@@ -7,7 +7,10 @@ namespace e_commerse.Domain.Factories
 {
     public class UserFactory : IUserFactory
     {
-        public User Create(UserId id, UserFullName fullName, Email email, UserRole role)
-            => new User(id, fullName, email, role);
+        public User CreateCustomer(UserId id, UserFullName fullName, Email email)
+            => new User(id, fullName, email, UserRole.Customer);
+
+        public User CreateAdmin(UserId id, UserFullName fullName, Email email)
+            => new User(id, fullName, email, UserRole.Admin);
     }
 }

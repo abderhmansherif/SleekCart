@@ -6,6 +6,7 @@ namespace e_commerse.Domain.Abstractions.Factories
 {
     public interface IUserFactory
     {
-        User Create(UserId id, UserFullName fullName, Email email, UserRole role);
+        User CreateCustomer(UserId id, UserFullName fullName, Email email);
+        User CreateAdmin(UserId id, UserFullName fullName, Email email);
     }
 }

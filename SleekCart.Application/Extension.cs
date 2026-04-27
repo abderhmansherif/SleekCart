@@ -11,6 +11,7 @@ namespace SleekCart.Application
             services.AddCommands();
 
             var assembly = typeof(Extension).Assembly;
+            
             services.Scan( s=> s.FromAssembliesOf(typeof(Extension))
                 .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
                 .AsImplementedInterfaces()

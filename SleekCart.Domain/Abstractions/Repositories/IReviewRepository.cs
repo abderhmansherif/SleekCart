@@ -1,7 +1,6 @@
-﻿using e_commerse.Domain.Entities;
-using e_commerse.Domain.ValueObjects.Cart;
-using e_commerse.Domain.ValueObjects.Product;
-using e_commerse.Domain.ValueObjects.User;
+﻿using SleekCart.Domain.Entities;
+using SleekCart.Domain.ValueObjects.Product;
+using SleekCart.Domain.ValueObjects.User;
 
 namespace e_commerse.Domain.Abstractions.Repositories
 {
