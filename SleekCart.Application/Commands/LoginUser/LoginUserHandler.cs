@@ -46,9 +46,7 @@ public sealed class LoginUserHandler : ICommandHandler<LoginUserCommand, AuthRes
 
         var (JwtId, Token) = await _tokenService.GenerateAccessTokenAsync(user.Id, user.FullName, user.Email, user.Role);
 
-        var RefreshTokenDuration = rememberMe? TimeSpan.FromDays(30) : TimeSpan.FromDays(7);
-
-        var RefreshToken = await _tokenService.GenerateRefreshTokenAsync(user.Id, JwtId, RefreshTokenDuration);
+        var RefreshToken = await _tokenService.GenerateRefreshTokenAsync(user.Id, JwtId, rememberMe);
 
         return new AuthResponseDto{AccessToken = Token, RefreshToken = RefreshToken};
     }

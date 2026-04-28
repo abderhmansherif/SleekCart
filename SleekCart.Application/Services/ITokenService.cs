@@ -6,5 +6,5 @@ namespace SleekCart.Application.Services;
 public interface ITokenService
 {
     Task<(Guid JWTId, string Token)> GenerateAccessTokenAsync(UserId UserId, string FullName, string Email, UserRole Role);
-    Task<string> GenerateRefreshTokenAsync(UserId UserId, Guid JWTId, TimeSpan Duration);
+    Task<string> GenerateRefreshTokenAsync(UserId UserId, Guid JWTId, bool rememberMe);
 }
