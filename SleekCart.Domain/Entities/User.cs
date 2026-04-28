@@ -38,6 +38,7 @@ namespace SleekCart.Domain.Entities
             {
                 throw new AlreadyUserDeletedException();
             }
+            
             this.FullName = newFullName;
         }
 
