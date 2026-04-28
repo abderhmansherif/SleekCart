@@ -1,9 +1,10 @@
 using SleekCart.Domain.Enums.User;
+using SleekCart.Domain.ValueObjects.User;
 
 namespace SleekCart.Application.Services;
 
 public interface ITokenService
 {
-    Task<string> GenerateAccessTokenAsync(string fullName, string email, UserRole role);
-    
+    Task<(Guid JWTId, string Token)> GenerateAccessTokenAsync(UserId UserId, string FullName, string Email, UserRole Role);
+    Task<string> GenerateRefreshTokenAsync(UserId UserId, Guid JWTId, TimeSpan Duration);
 }

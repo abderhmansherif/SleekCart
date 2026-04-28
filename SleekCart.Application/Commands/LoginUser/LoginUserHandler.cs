@@ -30,7 +30,7 @@ public sealed class LoginUserHandler : ICommandHandler<LoginUserCommand, AuthRes
             throw new ValidationFailedException(validationResults.Errors);
         }
         
-        var (email, password) = command;
+        var (email, password, rememberMe) = command;
 
         var user = await _repository.GetAsync(email, ct);
 
@@ -44,8 +44,12 @@ public sealed class LoginUserHandler : ICommandHandler<LoginUserCommand, AuthRes
             throw new InvalidCredentialsException();
         }
 
-        var token = await _tokenService.GenerateAccessTokenAsync(user.FullName, user.Email, user.Role);
+        var (JwtId, Token) = await _tokenService.GenerateAccessTokenAsync(user.Id, user.FullName, user.Email, user.Role);
 
-        return new AuthResponseDto{Token = token};
+        var RefreshTokenDuration = rememberMe? TimeSpan.FromDays(30) : TimeSpan.FromDays(7);
+
+        var RefreshToken = await _tokenService.GenerateRefreshTokenAsync(user.Id, JwtId, RefreshTokenDuration);
+
+        return new AuthResponseDto{AccessToken = Token, RefreshToken = RefreshToken};
     }
 }
