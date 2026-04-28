@@ -13,15 +13,19 @@ public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
 {
     private readonly IUserRepository _userRepository;
     private readonly IUserFactory _userFactory;
+    
     private readonly IIdentityService _identityService;
     private readonly IValidator<RegisterUserCommand> _validator;
+    private readonly IUnitOfWork unitOfWork;
+
     public RegisterUserHandler(IUserFactory userFactory, IUserRepository userRepository,
-            IIdentityService identityService, IValidator<RegisterUserCommand> validator)
+            IIdentityService identityService, IValidator<RegisterUserCommand> validator, IUnitOfWork unitOfWork)
     {
         _userRepository = userRepository;
         _userFactory = userFactory;
         _identityService = identityService;
         _validator = validator;
+        this.unitOfWork = unitOfWork;
     }
     public async Task HandleAsync(RegisterUserCommand command, CancellationToken ct)
     {
@@ -46,5 +50,7 @@ public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
         var newUser = _userFactory.CreateCustomer(uerId, fullName, email);
 
         await _userRepository.InsertAsync(newUser, ct);
+        
+        await unitOfWork.SaveChangesAsync();
     }
 }
