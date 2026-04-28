@@ -28,14 +28,12 @@ public sealed class RefreshTokenHandler : ICommandHandler<RefreshTokenCommand, A
         {
             throw new ValidationFailedException(validationResults.Errors);
         }
-
+        
         if(! await tokenService.VerifyToken(command.AccessToken, command.RefreshToken))
         {
             throw new InvalidTokensException();
         }
         
-        await tokenService.MarkAsUsed(command.RefreshToken, ct);
-
         var RefreshToken = await tokenService.GetByTokenAsync(command.RefreshToken);
 
         var user = await userRepository.GetByIdAsync(RefreshToken.UserId, ct);
@@ -48,6 +46,8 @@ public sealed class RefreshTokenHandler : ICommandHandler<RefreshTokenCommand, A
         var (JwtId, Token) = await tokenService.GenerateAccessTokenAsync(user.Id, user.FullName, user.Email, user.Role);
 
         var newRefreshToken = await tokenService.GenerateRefreshTokenAsync(UserId: user.Id, JWTId: JwtId, ct);
+
+        await tokenService.MarkAsUsed(command.RefreshToken, ct);
 
         return new AuthResponseDto {AccessToken = Token, RefreshToken = newRefreshToken};
     }
