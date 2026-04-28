@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SleekCart.Application.Abstractions.Commands;
 using SleekCart.Application.Commands.LoginUser;
+using SleekCart.Application.Commands.RefreshToken;
 using SleekCart.Application.Commands.RegisterUser;
 using SleekCart.Application.RegisterUser;
 using SleekCart.Shared.Commands;
@@ -16,8 +17,7 @@ namespace SleekCart.Application
             
             services.AddScoped<IValidator<RegisterUserCommand>, RegisterUserValidator>();
             services.AddScoped<IValidator<LoginUserCommand>, LoginUserValidator>();
-
-
+            services.AddScoped<IValidator<RefreshTokenCommand>, RefreshTokenValidator>();
 
             var assembly = typeof(Extension).Assembly;
             services.Scan( s=> s.FromAssembliesOf(typeof(Extension))
