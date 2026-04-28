@@ -4,5 +4,6 @@ namespace SleekCart.Application.Services;
 
 public interface ITokenService
 {
-    Task<string> GenerateTokenAsync(string fullName, string email, UserRole role);
+    Task<string> GenerateAccessTokenAsync(string fullName, string email, UserRole role);
+    
 }

@@ -44,7 +44,7 @@ public sealed class LoginUserHandler : ICommandHandler<LoginUserCommand, AuthRes
             throw new InvalidCredentialsException();
         }
 
-        var token = await _tokenService.GenerateTokenAsync(user.FullName, user.Email, user.Role);
+        var token = await _tokenService.GenerateAccessTokenAsync(user.FullName, user.Email, user.Role);
 
         return new AuthResponseDto{Token = token};
     }
