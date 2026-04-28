@@ -11,6 +11,7 @@ public sealed class UpdateProfileHandler: ICommandHandler<UpdateProfileCommand>
     private readonly IValidator<UpdateProfileCommand> _validator;
     private readonly IUnitOfWork _unitOfWork;
 
+
     public UpdateProfileHandler(IUserRepository userRepository, IValidator<UpdateProfileCommand> validator, 
                 IUnitOfWork unitOfWork)
     {
@@ -21,6 +22,13 @@ public sealed class UpdateProfileHandler: ICommandHandler<UpdateProfileCommand>
 
     public async Task HandleAsync(UpdateProfileCommand command, CancellationToken ct)
     {
+        var result = _validator.Validate(command);
+
+        if(!result.IsValid)
+        {
+            throw new ValidationFailedException(result.Errors);
+        }
+
         var user = await _userRepository.GetByIdAsync(command.UserId, ct);
 
         if(user is null)
