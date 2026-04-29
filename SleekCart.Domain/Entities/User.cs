@@ -65,10 +65,12 @@ namespace SleekCart.Domain.Entities
             }
 
             var address = _addresses.FirstOrDefault(a => a.Id == addressId);
-            if(address == null)
+
+            if(address is null)
             {
                 throw new AddressNotFoundException();
             }
+
             _addresses.Remove(address);
         }
 
