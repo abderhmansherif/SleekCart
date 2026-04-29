@@ -1,6 +1,6 @@
 using SleekCart.Application.Abstractions.Commands;
 
-namespace SleekCart.Application.Commands.AddAddress;
+namespace SleekCart.Application.Commands.User.AddAddress;
 
 public sealed record AddAddressCommand : ICommand
 {

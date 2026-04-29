@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace SleekCart.Application.Commands.UpdateProfile;
+namespace SleekCart.Application.Commands.User.UpdateProfile;
 
 public class UpdateProfileValidator: AbstractValidator<UpdateProfileCommand>
 {

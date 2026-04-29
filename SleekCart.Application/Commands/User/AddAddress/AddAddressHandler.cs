@@ -4,7 +4,7 @@ using SleekCart.Application.Abstractions.Commands;
 using SleekCart.Application.Exceptions;
 using SleekCart.Domain.Entities;
 
-namespace SleekCart.Application.Commands.AddAddress;
+namespace SleekCart.Application.Commands.User.AddAddress;
 
 public sealed class AddAddressHandler : ICommandHandler<AddAddressCommand>
 {

@@ -1,7 +1,7 @@
 using System.Data;
 using FluentValidation;
 
-namespace SleekCart.Application.Commands.AddAddress;
+namespace SleekCart.Application.Commands.User.AddAddress;
 
 public class AddAddressValidator: AbstractValidator<AddAddressCommand>
 {

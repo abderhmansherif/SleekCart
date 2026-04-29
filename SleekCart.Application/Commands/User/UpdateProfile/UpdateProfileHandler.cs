@@ -3,7 +3,7 @@ using FluentValidation;
 using SleekCart.Application.Abstractions.Commands;
 using SleekCart.Application.Exceptions;
 
-namespace SleekCart.Application.Commands.UpdateProfile;
+namespace SleekCart.Application.Commands.User.UpdateProfile;
 
 public sealed class UpdateProfileHandler: ICommandHandler<UpdateProfileCommand>
 {
