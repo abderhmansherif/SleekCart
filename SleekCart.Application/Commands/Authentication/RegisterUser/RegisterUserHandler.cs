@@ -3,11 +3,11 @@ using e_commerse.Domain.Abstractions.Repositories;
 using FluentValidation;
 using SleekCart.Application.Abstractions.Commands;
 using SleekCart.Application.Exceptions;
-using SleekCart.Application.RegisterUser;
 using SleekCart.Application.Services;
+using SleekCart.ApplicationCommands.Authentication.RegisterUser;
 using SleekCart.Domain.Enums.User;
 
-namespace SleekCart.Application.Commands.RegisterUser;
+namespace SleekCart.Application.Commands.Authentication.RegisterUser;
 
 public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
 {

@@ -5,7 +5,7 @@ using SleekCart.Application.DTOs;
 using SleekCart.Application.Exceptions;
 using SleekCart.Application.Services;
 
-namespace SleekCart.Application.Commands.RefreshToken;
+namespace SleekCart.Application.Commands.Authentication.RefreshToken;
 
 public sealed class RefreshTokenHandler : ICommandHandler<RefreshTokenCommand, AuthResponseDto>
 {

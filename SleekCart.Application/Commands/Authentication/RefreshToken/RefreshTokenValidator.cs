@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace SleekCart.Application.Commands.RefreshToken;
+namespace SleekCart.Application.Commands.Authentication.RefreshToken;
 
 public class RefreshTokenValidator: AbstractValidator<RefreshTokenCommand>
 {

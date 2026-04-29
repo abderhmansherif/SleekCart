@@ -5,7 +5,7 @@ using SleekCart.Application.DTOs;
 using SleekCart.Application.Exceptions;
 using SleekCart.Application.Services;
 
-namespace SleekCart.Application.Commands.LoginUser;
+namespace SleekCart.Application.Commands.Authentication.LoginUser;
 
 public sealed class LoginUserHandler : ICommandHandler<LoginUserCommand, AuthResponseDto>
 {
