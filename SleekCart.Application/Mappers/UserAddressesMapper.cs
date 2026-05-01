@@ -1,11 +1,10 @@
-using SleekCart.Application.DTOs;
-using SleekCart.Domain.Entities;
+using SleekCart.Application.User.DTOs;
 
 namespace SleekCart.Application.Mappers;
 
 public static class UserAddressesMapper
 {
-    public static List<AddressDto> ToAddressDtos(this User user)
+    public static List<AddressDto> ToAddressDtos(this SleekCart.Domain.Entities.User user)
         => user.Addresses.Select(a => new AddressDto
             {
                 AddressId = a.Id,

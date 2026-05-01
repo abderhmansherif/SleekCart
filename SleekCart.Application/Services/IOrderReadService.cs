@@ -5,5 +5,5 @@ namespace SleekCart.Application.Services;
 
 public interface IOrderReadService
 {
-    Task<List<Order>> GetOrdersByUserId(UserId userId, CancellationToken ct);
+    Task<List<SleekCart.Domain.Entities.Order>> GetOrdersByUserId(UserId userId, CancellationToken ct);
 }

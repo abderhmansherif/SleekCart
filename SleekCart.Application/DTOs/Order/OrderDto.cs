@@ -1,4 +1,4 @@
-namespace SleekCart.Application.DTOs;
+namespace SleekCart.Application.Order.DTOs;
 
 public class OrderDto
 {

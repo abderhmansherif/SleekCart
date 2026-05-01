@@ -1,5 +1,5 @@
 using SleekCart.Application.Abstractions.Queries;
-using SleekCart.Application.DTOs;
+using SleekCart.Application.User.DTOs;
 using SleekCart.Domain.ValueObjects.User;
 
 namespace SleekCart.Application.Queries.User.GetMyProfile;

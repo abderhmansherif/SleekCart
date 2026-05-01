@@ -1,7 +1,7 @@
 using e_commerse.Domain.Abstractions.Repositories;
 using FluentValidation;
 using SleekCart.Application.Abstractions.Commands;
-using SleekCart.Application.DTOs;
+using SleekCart.Application.Auth.DTOs;
 using SleekCart.Application.Exceptions;
 using SleekCart.Application.Services;
 

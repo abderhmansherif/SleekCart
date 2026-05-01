@@ -1,8 +1,8 @@
 using e_commerse.Domain.Abstractions.Repositories;
-using SleekCart.Application.DTOs;
 using SleekCart.Application.Exceptions;
 using SleekCart.Application.Mappers;
 using SleekCart.Application.Services;
+using SleekCart.Application.User.DTOs;
 using SleekCart.Shared.Abstractions.Queries;
 
 namespace SleekCart.Application.Queries.User.GetMyProfile;

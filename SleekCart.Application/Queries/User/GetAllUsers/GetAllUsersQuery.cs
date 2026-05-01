@@ -1,5 +1,6 @@
 using SleekCart.Application.Abstractions.Queries;
-using SleekCart.Application.DTOs;
+using SleekCart.Application.Common.DTOs;
+using SleekCart.Application.User.DTOs;
 
 namespace SleekCart.Application.Queries.User.GetAllUsers;
 

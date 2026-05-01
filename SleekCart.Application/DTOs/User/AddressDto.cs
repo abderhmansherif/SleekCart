@@ -1,4 +1,4 @@
-namespace SleekCart.Application.DTOs;
+namespace SleekCart.Application.User.DTOs;
 
 public class AddressDto
 {

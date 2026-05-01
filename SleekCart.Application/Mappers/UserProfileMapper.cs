@@ -1,10 +1,9 @@
-using SleekCart.Application.DTOs;
-using SleekCart.Domain.Entities;
-
+using SleekCart.Application.Order.DTOs;
+using SleekCart.Application.User.DTOs;
 namespace SleekCart.Application.Mappers;
 public static class UserProfileMapper
 {
-    public static ProfileDto ToProfile(this User user, List<Order>? orders)
+    public static ProfileDto ToProfile(this SleekCart.Domain.Entities.User user, List<SleekCart.Domain.Entities.Order>? orders)
         => new ProfileDto
         {
             UserId = user.Id.Value,

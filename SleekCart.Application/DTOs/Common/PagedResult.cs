@@ -1,4 +1,4 @@
-namespace SleekCart.Application.DTOs;
+namespace SleekCart.Application.Common.DTOs;
 
 public class PagedResult<T>
 {
