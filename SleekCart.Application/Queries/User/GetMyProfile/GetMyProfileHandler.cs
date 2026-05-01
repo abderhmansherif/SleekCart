@@ -5,7 +5,7 @@ using SleekCart.Application.Mappers;
 using SleekCart.Application.Services;
 using SleekCart.Shared.Abstractions.Queries;
 
-namespace SleekCart.Application.Queries.GetMyProfile;
+namespace SleekCart.Application.Queries.User.GetMyProfile;
 
 public sealed class GetMyProfileHandler : IQueryHandler<GetMyProfileQuery, ProfileDto>
 {

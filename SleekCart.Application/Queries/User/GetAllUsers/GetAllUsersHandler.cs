@@ -2,7 +2,7 @@ using SleekCart.Application.DTOs;
 using SleekCart.Application.Services;
 using SleekCart.Shared.Abstractions.Queries;
 
-namespace SleekCart.Application.Queries.GetAllUsers;
+namespace SleekCart.Application.Queries.User.GetAllUsers;
 
 public class GetAllUsersHandler: IQueryHandler<GetAllUsersQuery, PagedResult<UserDto>>
 {
