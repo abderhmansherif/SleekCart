@@ -5,5 +5,5 @@ namespace SleekCart.Application.Services;
 
 public interface IProductReadService
 {
-    Task<PagedResult<ProductDto>> GetAllAsync(int PageNumber, int PageSize, CancellationToken ct);
+    Task<PagedResult<ProductSummaryDto>> GetAllAsync(int PageNumber, int PageSize, CancellationToken ct);
 }

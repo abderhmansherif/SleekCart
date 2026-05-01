@@ -15,6 +15,7 @@ namespace SleekCart.Domain.Entities
         public StockQuantity StockQuantity { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public CategoryId? CategoryId { get; private set; }
+        public Category? Category { get; private set; } //Nav Property
         public IReadOnlyCollection<ProductImage> ProductImages => _images.AsReadOnly();
         public IReadOnlyCollection<StockReservation> StockReservations => _stockReservations.AsReadOnly();
 

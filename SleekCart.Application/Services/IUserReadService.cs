@@ -1,4 +1,6 @@
+using SleekCart.Application.Common.DTOs;
 using SleekCart.Application.DTOs;
+using SleekCart.Application.User.DTOs;
 
 namespace SleekCart.Application.Services;
 
