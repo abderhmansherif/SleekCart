@@ -11,7 +11,7 @@ public static class ProductMapper
             Id = product.Id.Value,
             Name = product.Name.Value,
             Price = product.Price.ToMoneyDto(),
-            Category = product.Category?.Name?? null!,
+            Category = product.Category?.Name?? "",
             ProductMainImage = product.ProductImages.Where(x => x.IsMain).Select(x => new ProductImageDto
             {
                 Id = x.Id,
