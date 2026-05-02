@@ -4,7 +4,7 @@ using SleekCart.Application.Abstractions.Commands;
 using SleekCart.Application.Commands.Authentication.LoginUser;
 using SleekCart.Application.Commands.Authentication.RefreshToken;
 using SleekCart.Application.Commands.Authentication.RegisterUser;
-using SleekCart.Application.Commands.Product;
+using SleekCart.Application.Commands.Product.CreateProduct;
 using SleekCart.Application.Commands.User.AddAddress;
 using SleekCart.Application.Commands.User.DeleteAddress;
 using SleekCart.Application.Commands.User.DeleteUser;
@@ -20,18 +20,9 @@ namespace SleekCart.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddCommands();
+
+            services.AddValidatorsFromAssembly(typeof(CreateProductValidator).Assembly);
             
-            services.AddScoped<IValidator<RegisterUserCommand>, RegisterUserValidator>();
-            services.AddScoped<IValidator<LoginUserCommand>, LoginUserValidator>();
-            services.AddScoped<IValidator<RefreshTokenCommand>, RefreshTokenValidator>();
-            services.AddScoped<IValidator<GetMyAddressesQuery>, GetMyAddressesValidator>();
-            services.AddScoped<IValidator<AddAddressCommand>, AddAddressValidator>();
-            services.AddScoped<IValidator<UpdateProfileCommand>, UpdateProfileValidator>();
-            services.AddScoped<IValidator<DeleteAddressCommand>, DeleteAddressValidator>();
-            services.AddScoped<IValidator<DeleteUserCommand>, DeleteUservalidator>();
-            services.AddScoped<IValidator<CreateProductCommand>, CreateProductValidator>();
-
-
             var assembly = typeof(Extension).Assembly;
             services.Scan( s=> s.FromAssembliesOf(typeof(Extension))
                 .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
@@ -42,3 +33,15 @@ namespace SleekCart.Application
         }
     }
 }
+
+/*
+    services.AddScoped<IValidator<RegisterUserCommand>, RegisterUserValidator>();
+    services.AddScoped<IValidator<LoginUserCommand>, LoginUserValidator>();
+    services.AddScoped<IValidator<RefreshTokenCommand>, RefreshTokenValidator>();
+    services.AddScoped<IValidator<GetMyAddressesQuery>, GetMyAddressesValidator>();
+    services.AddScoped<IValidator<AddAddressCommand>, AddAddressValidator>();
+    services.AddScoped<IValidator<UpdateProfileCommand>, UpdateProfileValidator>();
+    services.AddScoped<IValidator<DeleteAddressCommand>, DeleteAddressValidator>();
+    services.AddScoped<IValidator<DeleteUserCommand>, DeleteUservalidator>();
+    services.AddScoped<IValidator<CreateProductCommand>, CreateProductValidator>();
+*/
