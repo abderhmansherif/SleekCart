@@ -4,6 +4,7 @@ using SleekCart.Application.Abstractions.Commands;
 using SleekCart.Application.Commands.Authentication.LoginUser;
 using SleekCart.Application.Commands.Authentication.RefreshToken;
 using SleekCart.Application.Commands.Authentication.RegisterUser;
+using SleekCart.Application.Commands.Product;
 using SleekCart.Application.Commands.User.AddAddress;
 using SleekCart.Application.Commands.User.DeleteAddress;
 using SleekCart.Application.Commands.User.DeleteUser;
@@ -28,6 +29,7 @@ namespace SleekCart.Application
             services.AddScoped<IValidator<UpdateProfileCommand>, UpdateProfileValidator>();
             services.AddScoped<IValidator<DeleteAddressCommand>, DeleteAddressValidator>();
             services.AddScoped<IValidator<DeleteUserCommand>, DeleteUservalidator>();
+            services.AddScoped<IValidator<CreateProductCommand>, CreateProductValidator>();
 
 
             var assembly = typeof(Extension).Assembly;

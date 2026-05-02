@@ -13,6 +13,7 @@ namespace SleekCart.Domain.Entities
         public ImageFileName FileName { get; private set; }
         public bool IsMain { get; private set; } = false;
         public DateTime UploadAt { get; private set; }
+        public Product? Product { get; set; }
 
         public ProductImage(ProductImageId id, ProductId productId, ImageFilePath filePath, 
             ImageFileName fileName)
