@@ -3,7 +3,7 @@ using SleekCart.Application.Abstractions.Commands;
 using SleekCart.Application.DTOs.Product;
 using SleekCart.Domain.ValueObjects.Product;
 
-namespace SleekCart.Application.Commands.Product;
+namespace SleekCart.Application.Commands.Product.CreateProduct;
 
 public sealed record CreateProductCommand :ICommand
 {

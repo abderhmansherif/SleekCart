@@ -6,7 +6,7 @@ using SleekCart.Application.Exceptions;
 using SleekCart.Application.Services;
 using SleekCart.Domain.Entities;
 
-namespace SleekCart.Application.Commands.Product;
+namespace SleekCart.Application.Commands.Product.CreateProduct;
 
 public sealed class CreateProductHandler : ICommandHandler<CreateProductCommand>
 {

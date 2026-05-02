@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace SleekCart.Application.Commands.Product;
+namespace SleekCart.Application.Commands.Product.CreateProduct;
 
 public class CreateProductValidator: AbstractValidator<CreateProductCommand>
 {
