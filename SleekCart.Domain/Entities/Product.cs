@@ -47,6 +47,13 @@ namespace SleekCart.Domain.Entities
             this.CreatedAt = DateTime.UtcNow;
         }
 
+        public void UpdateDetails(ProductName newName, ProductDescription newDescreption, Money newPrice)
+        {
+            Name = newName;
+            Description = newDescreption;
+            Price = newPrice;
+        }
+
         public void ReserveStock(CartId cartId, int quantity, TimeSpan duration)
         {
             if (quantity <= 0)

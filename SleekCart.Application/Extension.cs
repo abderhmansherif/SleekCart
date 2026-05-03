@@ -1,16 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using SleekCart.Application.Abstractions.Commands;
-using SleekCart.Application.Commands.Authentication.LoginUser;
-using SleekCart.Application.Commands.Authentication.RefreshToken;
-using SleekCart.Application.Commands.Authentication.RegisterUser;
 using SleekCart.Application.Commands.Product.CreateProduct;
-using SleekCart.Application.Commands.User.AddAddress;
-using SleekCart.Application.Commands.User.DeleteAddress;
-using SleekCart.Application.Commands.User.DeleteUser;
-using SleekCart.Application.Commands.User.UpdateProfile;
-using SleekCart.Application.Queries.User.GetMyAddresses;
-using SleekCart.ApplicationCommands.Authentication.RegisterUser;
 using SleekCart.Shared.Commands;
 
 namespace SleekCart.Application
