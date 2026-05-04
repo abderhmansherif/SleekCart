@@ -8,4 +8,5 @@ public interface IProductReadService
 {
     Task<PagedResult<ProductSummaryDto>> GetAllAsync(int PageNumber, int PageSize, CancellationToken ct);
     Task<PagedResult<ProductSummaryDto>> GetByCategoryIdAsync(CategoryId categoryId, int PageNumber, int PageSize, CancellationToken ct);
+    Task<PagedResult<ProductSummaryDto>> SearchAsync(string Sentence, int PageNumber, int PageSize, CancellationToken ct);
 }
