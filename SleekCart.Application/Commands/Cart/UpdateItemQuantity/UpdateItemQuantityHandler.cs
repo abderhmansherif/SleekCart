@@ -54,6 +54,6 @@ public sealed class UpdateItemQuantityHandler: ICommandHandler<UpdateItemQuantit
 
         await _cartRepository.UpdateAsync(cart, ct);
         await _productRepository.UpdateAsync(product, ct);
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(ct);
     }
 }

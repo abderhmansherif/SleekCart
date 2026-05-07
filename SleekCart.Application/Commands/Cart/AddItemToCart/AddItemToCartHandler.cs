@@ -60,6 +60,6 @@ public sealed class AddItemToCartHandler: ICommandHandler<AddItemToCartCommand>
 
         await _cartRepository.UpdateAsync(cart, ct);
         await _productRepository.UpdateAsync(product, ct);
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(ct);
     }
 }
