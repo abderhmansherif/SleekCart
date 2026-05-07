@@ -42,6 +42,6 @@ public sealed class ClearCartHandler: ICommandHandler<ClearCartCommand>
         cart.ClearCart();
 
         await _cartRepository.UpdateAsync(cart, ct);
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(ct);
     }
 }
