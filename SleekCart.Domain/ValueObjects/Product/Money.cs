@@ -21,7 +21,7 @@ namespace SleekCart.Domain.ValueObjects.Product
             }
 
             this.Amount = ammount;
-            this.Currency = currency;
+            this.Currency = currency.ToUpper();
         }
 
         public Money Subtract(Money other)
