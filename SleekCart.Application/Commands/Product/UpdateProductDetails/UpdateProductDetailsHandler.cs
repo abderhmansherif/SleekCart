@@ -45,6 +45,6 @@ public sealed class UpdateProductDetailsHandler: ICommandHandler<UpdateProductDe
         product.UpdateDetails(newName, newDescreption, newPrice);
 
         await _productRepository.UpdateAsync(product, ct);
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(ct);
     }
 }

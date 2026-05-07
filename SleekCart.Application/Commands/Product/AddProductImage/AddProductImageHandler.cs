@@ -45,7 +45,7 @@ public sealed class AddProductImageHandler: ICommandHandler<AddProductImageComma
 
             await productRepository.UpdateAsync(product, ct);
 
-            await unitOfWork.SaveChangesAsync();   
+            await unitOfWork.SaveChangesAsync(ct);   
         }
         catch
         {

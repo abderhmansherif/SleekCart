@@ -44,6 +44,6 @@ public sealed class ChangeCategoryHandler: ICommandHandler<ChangeCategoryCommand
 
         await productRepository.UpdateAsync(product, ct);
 
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(ct);
     }
 }

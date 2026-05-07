@@ -25,6 +25,6 @@ public sealed class DeleteProductHandler: ICommandHandler<DeleteProductCommand>
         }
 
         await _productRepository.DeleteAsync(product.Id, ct);
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(ct);
     }
 }

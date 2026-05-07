@@ -87,6 +87,6 @@ public sealed class CreateProductHandler : ICommandHandler<CreateProductCommand>
         }
 
         await _productRepository.InsertAsync(newProduct, ct);
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(ct);
     }
 }

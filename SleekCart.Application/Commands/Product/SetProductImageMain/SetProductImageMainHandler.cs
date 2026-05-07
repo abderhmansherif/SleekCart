@@ -28,6 +28,6 @@ public class SetProductImageMainHandler: ICommandHandler<SetProductImageMainComm
         product.SetImageMain(new ProductImageId(command.ImageId));
 
         await productRepository.UpdateAsync(product, ct);
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(ct);
     }
 }

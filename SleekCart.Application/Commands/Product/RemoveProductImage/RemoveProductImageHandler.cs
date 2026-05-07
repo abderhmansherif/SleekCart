@@ -27,6 +27,6 @@ public sealed class RemoveProductImageHandler: ICommandHandler<RemoveProductImag
         product.RemoveImage(command.ImageId);
 
         await productRepository.UpdateAsync(product, ct);
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(ct);
     }
 }
