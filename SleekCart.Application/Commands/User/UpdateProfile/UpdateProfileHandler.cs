@@ -39,6 +39,6 @@ public sealed class UpdateProfileHandler: ICommandHandler<UpdateProfileCommand>
         user.UpdateFullName(new Domain.ValueObjects.User.UserFullName(command.NewFullName));
 
         await _userRepository.UpdateAsync(user, ct);
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(ct);
     }
 }

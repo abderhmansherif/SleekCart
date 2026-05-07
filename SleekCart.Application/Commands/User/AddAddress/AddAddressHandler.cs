@@ -46,6 +46,6 @@ public sealed class AddAddressHandler : ICommandHandler<AddAddressCommand>
 
         user.AddAddress(newAddress);
         await userRepository.UpdateAsync(user, ct);
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(ct);
     }
 }

@@ -40,6 +40,6 @@ public sealed class DeleteAddressHandler: ICommandHandler<DeleteAddressCommand>
         user.RemoveAddress(new Domain.ValueObjects.Address.AddressId(addressId));
 
         await userRepository.UpdateAsync(user, ct);
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(ct);
     }
 }

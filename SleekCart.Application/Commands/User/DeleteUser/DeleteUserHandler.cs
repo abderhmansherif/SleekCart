@@ -38,6 +38,6 @@ public sealed class DeleteUserHandler: ICommandHandler<DeleteUserCommand>
         user.MarkAsDeleted();
 
         await userRepository.UpdateAsync(user, ct);
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(ct);
     }
 }
