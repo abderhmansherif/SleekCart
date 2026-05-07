@@ -56,6 +56,13 @@ namespace SleekCart.Domain.Entities
 
         public void ReserveStock(CartId cartId, int quantity, TimeSpan duration)
         {
+            var reservation = _stockReservations.FirstOrDefault(s => s.CartId == cartId && !s.IsExpired);
+
+            if (reservation is not null)
+            {
+                _stockReservations.Remove(reservation);
+            }
+
             if (quantity <= 0)
                 throw new InvalidQuantityException();
 
@@ -64,19 +71,8 @@ namespace SleekCart.Domain.Entities
             // Must account for active reservations to prevent overselling
             if (StockQuantity.Value - reservedQuantity < quantity)
                 throw new InsufficientStockException();
-
-            var reservation = _stockReservations.FirstOrDefault(s => s.CartId == cartId);
-
-            // That't means the reservation need to update the quantity and expiry date, otherwise create a new reservation
-            if (reservation is not null)
-            {
-                _stockReservations.Remove(reservation);
-                _stockReservations.Add(new StockReservation(cartId, quantity, duration));
-            }
-            else 
-            {
-                _stockReservations.Add(new StockReservation(cartId, quantity, duration));
-            }
+            
+            _stockReservations.Add(new StockReservation(cartId, quantity, duration));
         }
 
         public void ConfirmReservation(CartId cartId)
@@ -102,11 +98,11 @@ namespace SleekCart.Domain.Entities
 
         public void ReleaseReservation(CartId cartId)
         {
-            var reservation = _stockReservations.FirstOrDefault(s => s.CartId == cartId && s.IsExpired);
+            var reservation = _stockReservations.FirstOrDefault(s => s.CartId == cartId && !s.IsExpired);
 
             if (reservation is null)
             {
-                throw new StockReservationNotFoundException();
+                return;
             }
 
             _stockReservations.Remove(reservation);

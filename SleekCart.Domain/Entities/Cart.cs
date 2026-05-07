@@ -31,10 +31,10 @@ namespace SleekCart.Domain.Entities
 
             var item = _items.FirstOrDefault(i => i.ProductId == cartItem.ProductId);
 
-            // If the item already exists in the cart, increase the quantity
             if (item is not null)
             {
-                item.IncreaseQuantity(cartItem.Quantity);
+                _items.Remove(item);
+                _items.Add(cartItem);
 
                 RecalculateTotal();
                 return;
@@ -76,21 +76,15 @@ namespace SleekCart.Domain.Entities
             Total = new Money(sum, Currency.Value);
         }
 
-        public void RemoveItem(CartItem cartItem) 
+        public void RemoveItem(ProductId productId) 
         {
-            // Validate the cart item
-            if (cartItem is null)
-            {
-                throw new EmptyCartItemException();
-            }
-
             // If the cart is empty, throw an exception
             if (!_items.Any())
             {
                 throw new EmptyCartException();
             }
 
-            var item = _items.FirstOrDefault(i => i.ProductId == cartItem.ProductId);
+            var item = _items.FirstOrDefault(i => i.ProductId == productId);
 
             if(item is null)
             {
