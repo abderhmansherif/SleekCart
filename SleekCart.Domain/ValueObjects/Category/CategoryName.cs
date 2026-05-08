@@ -1,4 +1,5 @@
 ﻿using e_commerse.Domain.Exceptions.Category;
+using SleekCart.Domain.Exceptions.Category;
 
 namespace SleekCart.Domain.ValueObjects.Category
 {
@@ -11,6 +12,11 @@ namespace SleekCart.Domain.ValueObjects.Category
             if (string.IsNullOrEmpty(value))
             {
                 throw new EmptyCategoryNameException();
+            }
+
+            if(value.Length > 20)
+            {
+                throw new TooLongCategoryNameException();
             }
 
             this.Value = value;

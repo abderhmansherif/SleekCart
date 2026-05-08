@@ -7,7 +7,7 @@ namespace SleekCart.Domain.Entities
         public CategoryId Id { get; private set; }
         public CategoryName Name { get; private set; }
 
-        public Category(CategoryId id, CategoryName name)
+        internal Category(CategoryId id, CategoryName name)
         {
             Id = id;
             Name = name;
