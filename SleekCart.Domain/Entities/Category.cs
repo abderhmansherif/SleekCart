@@ -1,4 +1,5 @@
-﻿using SleekCart.Domain.ValueObjects.Category;
+﻿using SleekCart.Domain.Exceptions.Cart;
+using SleekCart.Domain.ValueObjects.Category;
 
 namespace SleekCart.Domain.Entities
 {
@@ -11,6 +12,16 @@ namespace SleekCart.Domain.Entities
         {
             Id = id;
             Name = name;
+        }
+
+        public void UpdateName(CategoryName categoryName)
+        {
+            if(this.Name == categoryName)
+            {
+                throw new AlreadyUpdatedCategoryException();
+            }
+
+            this.Name = categoryName;
         }
     }
 }
