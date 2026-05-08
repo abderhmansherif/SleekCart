@@ -51,6 +51,6 @@ public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
 
         await _userRepository.InsertAsync(newUser, ct);
         
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(ct);
     }
 }
