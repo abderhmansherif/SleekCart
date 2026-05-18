@@ -7,6 +7,7 @@ namespace e_commerse.Domain.Abstractions.Repositories
     {
         Task<Product> GetAsync(ProductId productId, CancellationToken ct);
         Task<Product> GetByNameAsync(ProductName ProductName, CancellationToken ct);
+        Task<IEnumerable<Product>> GetByIdsAsync(IEnumerable<ProductId> ids, CancellationToken ct);
         Task InsertAsync(Product product, CancellationToken ct);
         Task UpdateAsync(Product product, CancellationToken ct);
         Task DeleteAsync(ProductId productId, CancellationToken ct);
