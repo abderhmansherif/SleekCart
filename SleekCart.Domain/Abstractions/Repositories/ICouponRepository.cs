@@ -6,6 +6,7 @@ namespace e_commerse.Domain.Abstractions.Repositories
     public interface ICouponRepository
     {
         Task<Coupon> GetAsync(CouponId couponId, CancellationToken ct);
+        Task<Coupon> GetByCodeAsync(CouponCode CouponCode, CancellationToken ct);
         Task InsertAsync(Coupon coupon, CancellationToken ct);
         Task UpdateAsync(Coupon coupon, CancellationToken ct);
         Task DeleteAsync(CouponId couponId, CancellationToken ct);

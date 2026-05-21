@@ -24,6 +24,7 @@ namespace SleekCart.Domain.ValueObjects.Product
             this.Currency = currency.ToUpper();
         }
 
+        public static Money Zero(string currency) => new Money(0, currency);
         public Money Subtract(Money other)
         {
             if(this.Currency != other.Currency)

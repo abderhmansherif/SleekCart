@@ -104,6 +104,12 @@ namespace SleekCart.Domain.Entities
            if (!_items.Any())
                throw new EmptyOrderException();
 
+            if(CouponId is not null)
+            {
+                CouponId = null;
+                Discount = Money.Zero(Discount!.Currency);
+            }
+
            // Calculate the discount amount
            var discount = coupon.CalculateDiscount(SubTotal);
 
@@ -120,14 +126,6 @@ namespace SleekCart.Domain.Entities
         {
             if(Status != OrderStatus.Pending)
                 throw new InvalidOrderStatusTransitionException();
-
-            if(coupon is not null)
-            {
-                if (!coupon.IsValid())
-                    throw new CouponNotValidException();
-
-                coupon.Use();
-            }
 
             Status = OrderStatus.Paid;
             AddHistory("Order Paid");
