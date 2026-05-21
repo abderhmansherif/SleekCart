@@ -20,11 +20,11 @@ namespace SleekCart.Domain.Entities
         public IReadOnlyCollection<OrderStatusHistory> History => _history;
         public Money SubTotal { get; private set; }
         public Money Total { get; private set; }
-        public CouponId CouponId { get; private set; }
+        public CouponId? CouponId { get; private set; }
         public Currency Currency { get; private set; }
         public ShippingAddress ShippingAddress { get; private set; }
         public OrderStatus Status { get; private set; }
-        public Money Discount { get; private set; }
+        public Money? Discount { get; private set; }
         public DateTime CreatedAt { get; private set; }
 
         private List<OrderItem> _items = new();

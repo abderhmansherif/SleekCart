@@ -12,6 +12,7 @@ public static class OrderStatusHistoryMapper
             Timeline = order.History.OrderBy(x => x.ChangedAt).Select(x => new OrderTimeLine
             {
                 Status = x.Status.ToString(),
+                Note = x.Note,
                 At = x.ChangedAt
             })
             .ToList(),

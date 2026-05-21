@@ -88,7 +88,7 @@ namespace SleekCart.Domain.Entities
             // Calculate the discount based on whether it's a percentage or a fixed amount
             if (IsPercentage)
             {
-                return (amount.Amount * DiscountValue.Amount) / 100;
+                return amount.Amount * DiscountValue.Amount / 100;
             }
 
             return DiscountValue.Amount;

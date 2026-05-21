@@ -10,6 +10,7 @@ namespace SleekCart.Domain.Entities
         public int Quantity { get; private set; }
         public Money Price { get; private set; }
         public decimal Total => Price.Amount * Quantity;
+        public Product? Product { get; set; }
 
         public OrderItem(Guid orderId, ProductId productId, int quantity, Money price)
         {
