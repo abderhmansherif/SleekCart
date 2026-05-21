@@ -142,6 +142,10 @@ namespace SleekCart.Domain.Entities
             {
                 throw new CannotCancelOrderException();
             }
+            
+            // Domain Event for Order Request Refund
+            if(Status == OrderStatus.Paid)
+                RaiseDomainEvent(new OrderRefundRequestedEvent(userId:this.UserId, orderId:this.Id));
 
             Status = OrderStatus.Cancelled;
             AddHistory("Order Cancelled");

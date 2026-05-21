@@ -4,10 +4,7 @@ namespace e_commerse.Domain.Exceptions.Order
 {
     public class CannotCancelOrderException: OrderException
     {
-        public CannotCancelOrderException(): base("Cannot cancel the order in its current status.")
-        {
-            
-            
-        }
+        public CannotCancelOrderException(): base("This order can't be cancelled at this stage. Please contact support if you need help.")
+        {}
     }
 }
