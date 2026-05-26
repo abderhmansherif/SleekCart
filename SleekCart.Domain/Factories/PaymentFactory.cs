@@ -18,5 +18,8 @@ namespace e_commerse.Domain.Factories
 
         public Payment CreateStripePayment(PaymentId id, OrderId orderId, UserId userId, Money amount)
             => new Payment(id ,orderId, userId, amount, PaymentProvider.Stripe);
+
+        public Payment CreatePayment(PaymentId id, OrderId orderId, UserId userId, Money amount, PaymentProvider paymentProvider)
+            => new Payment(id, orderId, userId, amount, paymentProvider);
     }
 }
