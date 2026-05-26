@@ -1,11 +1,10 @@
 using e_commerse.Domain.Abstractions.Repositories;
 using SleekCart.Application.Exceptions;
 using SleekCart.Application.Order.DTOs;
-using SleekCart.Application.Queries.Order.GetMyOrders;
 using SleekCart.Application.Services;
 using SleekCart.Shared.Abstractions.Queries;
 
-namespace SleekCart.Application.Queries.Order;
+namespace SleekCart.Application.Queries.Order.GetMyOrders;
 
 public sealed class GetMyOrdersHandler: IQueryHandler<GetMyOrdersQuery, List<OrderDto>>
 {

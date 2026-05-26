@@ -14,5 +14,4 @@ public static class UserAddressesMapper
                 Note = a.Note.Value
 
             }).ToList();
-        
 }
