@@ -12,6 +12,8 @@ namespace SleekCart.Domain.Entities
     {
         public PaymentId Id { get; private set; }
         public OrderId OrderId { get; private set; }
+        public string? ProviderPaymentId { get; private set; }
+        public string? ProviderSessionId { get; private set; }
         public UserId UserId { get; private set; }
         public Money Amount { get; private set; }
         public PaymentStatus Status { get; private set; }
@@ -28,6 +30,21 @@ namespace SleekCart.Domain.Entities
             Status = PaymentStatus.Pending;
             Provider = provider;
             CreatedAt = DateTime.UtcNow;
+        }
+
+        public void SetProviderPaymentId(string providerPaymentId)
+        {
+            if(string.IsNullOrEmpty(providerPaymentId))
+                return;
+            
+            this.ProviderPaymentId = providerPaymentId;
+        }
+        public void SetProviderSessionId(string providerSessionId)
+        {
+            if(string.IsNullOrEmpty(providerSessionId))
+                return;
+            
+            this.ProviderSessionId = providerSessionId;
         }
 
         public void MarkAsCompleted()
