@@ -32,7 +32,7 @@ namespace SleekCart.Domain.Entities
         }
 
         internal Coupon(CouponId id, CouponCode code, bool isPercentage, UsageLimit usageLimit, 
-            UsedCount usedCount, DateTime expiryDate)
+           DateTime expiryDate)
         {
             this.Id = id;
             this.Code = code;
@@ -40,7 +40,7 @@ namespace SleekCart.Domain.Entities
             this.Type = CouponType.MultiUse;
             this.ExpiryDate = expiryDate;
             this.UsageLimit = usageLimit;
-            this.UsedCount = usedCount;
+            this.UsedCount = new(0);
             this.CreatedAt = DateTime.UtcNow;
         }
 
