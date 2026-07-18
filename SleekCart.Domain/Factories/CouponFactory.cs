@@ -2,14 +2,15 @@
 using e_commerse.Domain.Abstractions.Factories;
 using e_commerse.Domain.ValueObjects.Coupon;
 using SleekCart.Domain.Entities;
+using SleekCart.Domain.Enums.Coupon;
 using SleekCart.Domain.ValueObjects.Coupon;
 
 namespace e_commerse.Domain.Factories
 {
     internal class CouponFactory : ICouponFactory
     {
-        public Coupon CreateMultiUse(CouponId id, CouponCode code, bool isPercentage, UsageLimit usageLimit, UsedCount usedCount, DateTime expiryDate)
-            => new Coupon(id, code, isPercentage, usageLimit, usedCount, expiryDate);
+        public Coupon CreateMultiUse(CouponId id, CouponCode code, bool isPercentage, UsageLimit usageLimit, DateTime expiryDate)
+            => new Coupon(id, code, isPercentage, usageLimit, expiryDate);
 
         public Coupon CreateSingleUse(CouponId id, CouponCode code, bool isPercentage, DateTime expiryDate)
             => new Coupon(id, code, isPercentage, expiryDate);

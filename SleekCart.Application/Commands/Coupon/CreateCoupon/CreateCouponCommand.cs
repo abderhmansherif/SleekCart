@@ -6,7 +6,7 @@ public record CreateCouponCommand
 (
     string Code, 
     string CouponType, 
-    TimeSpan Duration, 
+    DateTime ExpirationDate, 
     bool isPercentage, 
     int UsageLimit
     

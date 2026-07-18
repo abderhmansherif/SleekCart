@@ -30,7 +30,7 @@ namespace SleekCart.Domain.Entities
             this.IsUsed = false;
             this.CreatedAt = DateTime.UtcNow;
         }
-
+    
         internal Coupon(CouponId id, CouponCode code, bool isPercentage, UsageLimit usageLimit, 
            DateTime expiryDate)
         {
