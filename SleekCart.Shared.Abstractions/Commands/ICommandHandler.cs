@@ -5,7 +5,7 @@
         Task HandleAsync(TCommand command, CancellationToken ct);
     }
 
-    public interface ICommandHandler<TCommand, TResponse>
+    public interface ICommandHandler<TCommand, TResponse> where TCommand : ICommand
     {
         Task<TResponse> HandleAsync(TCommand command, CancellationToken ct);
     }
