@@ -40,6 +40,13 @@ public sealed class AddReviewHandler : ICommandHandler<AddReviewCommand>
         if(Product is null)
             throw new NotFoundProductException();
 
+        var existedReview = await _reviewRepository.GetAsync(userId, productId, ct);
+
+        if(existedReview is not null)
+        {
+            throw new ReviewAlreadyExistsException();
+        }
+
         bool IsVerifiedPurchase = await _orderReadService.HasPurchasedProductAsync(user.Id, Product.Id, ct);
 
         var review = _reviewFactory.Create(
