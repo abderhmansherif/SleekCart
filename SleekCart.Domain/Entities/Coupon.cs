@@ -2,6 +2,7 @@
 using e_commerse.Domain.Exceptions.Coupon;
 using e_commerse.Domain.ValueObjects.Coupon;
 using SleekCart.Domain.Enums.Coupon;
+using SleekCart.Domain.Exceptions.Coupon;
 using SleekCart.Domain.ValueObjects.Coupon;
 using SleekCart.Domain.ValueObjects.Product;
 
@@ -13,7 +14,7 @@ namespace SleekCart.Domain.Entities
         public CouponCode Code { get; private set; }
         public CouponType Type { get; private set; }
         public Discount Discount { get; private set; }
-        public bool IsUsed { get; private set; }
+        public bool? IsUsed { get; private set; }
         public UsageLimit? UsageLimit { get; private set; }
         public UsedCount? UsedCount { get; private set; }
         public DateTime ExpiryDate { get; private set; }
@@ -41,6 +42,7 @@ namespace SleekCart.Domain.Entities
             this.Type = CouponType.MultiUse;
             this.ExpiryDate = expiryDate;
             this.UsageLimit = usageLimit;
+            this.IsUsed = null;
             this.UsedCount = new(0);
             this.CreatedAt = DateTime.UtcNow;
         }
@@ -53,7 +55,7 @@ namespace SleekCart.Domain.Entities
             var now = DateTime.UtcNow;
 
             if(NewExpiryDate < now)
-                return;
+                throw new InvalidCouponExpirationDateException();
 
             this.ExpiryDate = NewExpiryDate;
         }
@@ -67,7 +69,7 @@ namespace SleekCart.Domain.Entities
             // Check usage based on coupon type
             if (Type == CouponType.SingleUse)
             {
-                return !IsUsed;
+                return !IsUsed.Value;
             }
 
             // For multi-use coupons, check if the usage limit has not been exceeded
