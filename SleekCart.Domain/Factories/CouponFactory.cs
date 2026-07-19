@@ -9,10 +9,19 @@ namespace e_commerse.Domain.Factories
 {
     internal class CouponFactory : ICouponFactory
     {
-        public Coupon CreateMultiUse(CouponId id, CouponCode code, bool isPercentage, UsageLimit usageLimit, DateTime expiryDate)
-            => new Coupon(id, code, isPercentage, usageLimit, expiryDate);
+        public Coupon CreateMultiUse(CouponId id, CouponCode code, UsageLimit usageLimit, DateTime expiryDate, Discount discount)
+            => new Coupon(
+                id: id,
+                code: code,
+                usageLimit: usageLimit,
+                expiryDate: expiryDate,
+                discount: discount);
 
-        public Coupon CreateSingleUse(CouponId id, CouponCode code, bool isPercentage, DateTime expiryDate)
-            => new Coupon(id, code, isPercentage, expiryDate);
+        public Coupon CreateSingleUse(CouponId id, CouponCode code, DateTime expiryDate, Discount discount)
+            => new Coupon(
+                id: id,
+                code:code,
+                expiryDate: expiryDate,
+                discount: discount);
     }
 }

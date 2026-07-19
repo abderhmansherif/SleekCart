@@ -12,31 +12,32 @@ namespace SleekCart.Domain.Entities
         public CouponId Id { get; private set; }
         public CouponCode Code { get; private set; }
         public CouponType Type { get; private set; }
-        public Money DiscountValue { get; private set; }
+        public Discount Discount { get; private set; }
         public bool IsUsed { get; private set; }
-        public bool IsPercentage { get; private set; } 
         public UsageLimit? UsageLimit { get; private set; }
         public UsedCount? UsedCount { get; private set; }
         public DateTime ExpiryDate { get; private set; }
         public DateTime CreatedAt { get; private set; }
 
-        internal Coupon(CouponId id, CouponCode code, bool isPercentage, DateTime expiryDate)
+        internal Coupon(CouponId id, CouponCode code, DateTime expiryDate, Discount discount)
         {
             this.Id = id;
             this.Code = code;
-            this.IsPercentage = isPercentage;
             this.Type = CouponType.SingleUse;
             this.ExpiryDate = expiryDate;
             this.IsUsed = false;
+            this.Discount = discount;
+            this.UsageLimit = null;
+            this.UsedCount = null;
             this.CreatedAt = DateTime.UtcNow;
         }
     
-        internal Coupon(CouponId id, CouponCode code, bool isPercentage, UsageLimit usageLimit, 
-           DateTime expiryDate)
+        internal Coupon(CouponId id, CouponCode code, UsageLimit usageLimit, 
+           DateTime expiryDate, Discount discount)
         {
             this.Id = id;
             this.Code = code;
-            this.IsPercentage = isPercentage;
+            this.Discount = discount;
             this.Type = CouponType.MultiUse;
             this.ExpiryDate = expiryDate;
             this.UsageLimit = usageLimit;
@@ -44,6 +45,18 @@ namespace SleekCart.Domain.Entities
             this.CreatedAt = DateTime.UtcNow;
         }
 
+
+        public void UpdateDiscount(Discount discount) => this.Discount = discount;
+        public void UpdateCode(CouponCode code) => this.Code = code;
+        public void UpdateExpirationDate(DateTime NewExpiryDate)
+        {
+            var now = DateTime.UtcNow;
+
+            if(NewExpiryDate < now)
+                return;
+
+            this.ExpiryDate = NewExpiryDate;
+        }
 
         public bool IsValid()
         {
@@ -79,19 +92,8 @@ namespace SleekCart.Domain.Entities
                 throw new CouponNotValidException();
             }
 
-            // Ensure the discount value and the amount are in the same currency
-            if (DiscountValue.Currency != amount.Currency)
-            {
-                throw new CurrencyMismatchException();
-            }
-
             // Calculate the discount based on whether it's a percentage or a fixed amount
-            if (IsPercentage)
-            {
-                return amount.Amount * DiscountValue.Amount / 100;
-            }
-
-            return DiscountValue.Amount;
+            return amount.Amount * Discount / 100;
         }
 
         public void Use()

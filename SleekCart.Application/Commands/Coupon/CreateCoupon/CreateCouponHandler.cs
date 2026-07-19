@@ -32,14 +32,14 @@ public sealed class CreateCouponHandler: ICommandHandler<CreateCouponCommand>
             CouponType.MultiUse => _couponFactory.CreateMultiUse(
                                         id: Guid.NewGuid(), 
                                         code: command.Code, 
-                                        isPercentage: command.isPercentage,
+                                        discount: command.DiscountValue,
                                         expiryDate: command.ExpirationDate, 
                                         usageLimit: command.UsageLimit),
             
             CouponType.SingleUse => _couponFactory.CreateSingleUse(
                                         id: Guid.NewGuid(), 
                                         code: command.Code, 
-                                        isPercentage: command.isPercentage,
+                                        discount: command.DiscountValue,
                                         expiryDate: command.ExpirationDate),
             
             _ => throw new InvalidCouponTypeException(command.CouponType)

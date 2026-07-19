@@ -7,7 +7,7 @@ public record CreateCouponCommand
     string Code, 
     string CouponType, 
     DateTime ExpirationDate, 
-    bool isPercentage, 
-    int UsageLimit
+    decimal DiscountValue,
+    int? UsageLimit
     
     ): ICommand;
