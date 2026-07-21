@@ -4,6 +4,7 @@ using SleekCart.Domain.ValueObjects.Order;
 using SleekCart.Domain.ValueObjects.Payment;
 using SleekCart.Domain.ValueObjects.Product;
 using SleekCart.Domain.ValueObjects.User;
+using SleekCart.Shared.Abstractions.Events;
 
 namespace SleekCart.Domain.Events.Payment
 {
