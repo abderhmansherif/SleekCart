@@ -6,6 +6,7 @@ using SleekCart.Application.Exceptions;
 using SleekCart.Application.Services;
 using SleekCart.ApplicationCommands.Authentication.RegisterUser;
 using SleekCart.Domain.Enums.User;
+using SleekCart.Shared.Abstractions.Events;
 
 namespace SleekCart.Application.Commands.Authentication.RegisterUser;
 
@@ -17,15 +18,18 @@ public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
     private readonly IIdentityService _identityService;
     private readonly IValidator<RegisterUserCommand> _validator;
     private readonly IUnitOfWork unitOfWork;
+    private readonly IEventPublisher _eventPublisher;
 
     public RegisterUserHandler(IUserFactory userFactory, IUserRepository userRepository,
-            IIdentityService identityService, IValidator<RegisterUserCommand> validator, IUnitOfWork unitOfWork)
+            IIdentityService identityService, IValidator<RegisterUserCommand> validator, 
+            IUnitOfWork unitOfWork, IEventPublisher eventPublisher)
     {
         _userRepository = userRepository;
         _userFactory = userFactory;
         _identityService = identityService;
         _validator = validator;
         this.unitOfWork = unitOfWork;
+        this._eventPublisher = eventPublisher;
     }
     public async Task HandleAsync(RegisterUserCommand command, CancellationToken ct)
     {
@@ -52,5 +56,12 @@ public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
         await _userRepository.InsertAsync(newUser, ct);
         
         await unitOfWork.SaveChangesAsync(ct);
+
+        foreach (var @event in user.DomainEvents)
+        {
+            await _eventPublisher.PublishAsync(@event, ct);
+        }
+
+        user.ClearFomainEvents();
     }
 }
