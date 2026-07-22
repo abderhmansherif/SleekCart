@@ -1,4 +1,6 @@
-﻿namespace SleekCart.Domain.Abstractions.Domain
+﻿using SleekCart.Shared.Abstractions.Events;
+
+namespace SleekCart.Domain.Abstractions.Domain
 {
     public abstract class AggregateRoot
     {

@@ -29,7 +29,7 @@ namespace SleekCart.Domain.Entities
             this.JoinedAt = DateTime.UtcNow;
 
             // Raise UserCreatedEvent 
-            RaiseDomainEvent(new UserRegisteredEvent(this.Id, this.Email));
+            RaiseDomainEvent(new UserRegisteredEvent(this.FullName , this.Id, this.Email));
         }
 
         public void UpdateFullName(UserFullName newFullName)
