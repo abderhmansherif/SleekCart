@@ -62,6 +62,6 @@ public sealed class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
             await _eventPublisher.PublishAsync(@event, ct);
         }
 
-        user.ClearFomainEvents();
+        user.ClearDomainEvents();
     }
 }

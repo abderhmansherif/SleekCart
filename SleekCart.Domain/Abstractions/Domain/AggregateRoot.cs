@@ -10,7 +10,7 @@ namespace SleekCart.Domain.Abstractions.Domain
         protected void RaiseDomainEvent(IDomainEvent domainEvent)
             => _domainEvents.Add(domainEvent);
 
-        public void ClearFomainEvents()
+        public void ClearDomainEvents()
             => _domainEvents.Clear();
     }
 }
